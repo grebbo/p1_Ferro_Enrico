@@ -7,20 +7,27 @@ public abstract class Component {
     //attributes
     private String componentID;
     private ArrayList<Component> compatibleComponents;
+    private int frameWidth;
+    private int frameDepth;
 
     //method
-    public Component(String componentID) {
+    public Component(){
+        componentID = null;
+        compatibleComponents = new ArrayList<>();
+        frameWidth = 0; frameDepth = 0;
+    }
+
+    public Component(String componentID, int frameWidth, int frameDepth) {
         this.componentID = componentID;
         compatibleComponents = new ArrayList<>();
-        //fill compatibility list depending on which component is considered
-        switch (componentID) {
-            default:
-                break;
-        }
+        this.frameWidth = frameWidth;
+        this.frameDepth = frameDepth;
     }
 
     public String getComponentID() {return componentID;}
     public ArrayList<Component> getCompatibleComponents() {return compatibleComponents;}
+    public int getFrameWidth() {return frameWidth;}
+    public int getFrameDepth() {return frameDepth;}
 
     public void render() {}
 }
