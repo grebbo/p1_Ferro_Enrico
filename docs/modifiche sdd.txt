@@ -1,0 +1,7 @@
+Class Diagram:
+-	Importanti modifiche alla struttura: Database è ora un aggregatore di DrawingProjects e Components, diversamente a quanto 
+		precedentemente modellato. 
+	Motivo della modifica: in seguito a un'ulteriore intervista con il cliente si è notata questa discrepanza con la struttura
+		già presente e delle componenti in backend con cui deve interfacciarsi il modulo software.
+	Modifiche legate: cambiano diagrammi legati all'interazione con il Database.
+ 
