@@ -1,5 +1,7 @@
 package project_components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import drawing_entities.Rectangle;
 
 /**Class modeling the shaft (principal frame) of the elevator.

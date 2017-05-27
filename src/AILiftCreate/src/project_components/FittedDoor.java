@@ -1,5 +1,6 @@
 package project_components;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import drawing_entities.Rectangle;
 
 /**
@@ -7,7 +8,9 @@ import drawing_entities.Rectangle;
  */
 public class FittedDoor extends FittedComponent {
     //attributes
+    @JsonProperty("totalWidth")
     private int totalWidth;
+    @JsonProperty("doorstep")
     private int doorstep;
 
     //methods

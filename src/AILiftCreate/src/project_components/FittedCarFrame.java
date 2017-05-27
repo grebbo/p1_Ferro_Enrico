@@ -1,5 +1,6 @@
 package project_components;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import drawing_entities.Rectangle;
 
 /**
@@ -7,8 +8,11 @@ import drawing_entities.Rectangle;
  */
 public class FittedCarFrame extends FittedComponent {
     //attributes
+    @JsonProperty("dist_asse_guide_filomuro")
     private int wallDistance;
+    @JsonProperty("dist_cabina_asse_guide")
     private int cabinDistance;
+    @JsonProperty("ingtrasv")
     private int ingTrasv;
 
     //methods

@@ -5,9 +5,13 @@ package AIMSLabServerInteraction;
  * Gives all the methods of the Jackson json parser library to the AIMSLabServerInteraction.DrawingProject class
  */
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.*;
 import project_components.*;
 import java.io.File;
+import java.io.IOException;
 
 public class Parser {
     //attributes
@@ -92,15 +96,15 @@ public class Parser {
     //from given AIMSLabServerInteraction.DrawingProject to json, in order to be exported
     //to be completed
     public String parseComponents2Project(DrawingProject drawingProject){
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         String projectJson = "";
-        try{
-            projectJson = objectMapper.writeValueAsString(drawingProject);
-            objectMapper.writeValue(new File("output.txt"), drawingProject);
-        } catch (Exception e ) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            projectJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(drawingProject);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return projectJson;
     }
 

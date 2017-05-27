@@ -1,5 +1,8 @@
 package project_components;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -7,9 +10,13 @@ import java.util.ArrayList;
  */
 public abstract class Component {
     //attributes
+    @JsonProperty("id")
     private String componentId;
+    @JsonIgnore
     private ArrayList<Component> compatibleComponents;
+    @JsonProperty("width")
     private int frameWidth;
+    @JsonProperty("depth")
     private int frameDepth;
 
     //method

@@ -1,6 +1,7 @@
 package AIMSLabServerInteraction;
 
 import cad_project.AiLiftProject;
+import com.fasterxml.jackson.annotation.*;
 import project_components.*;
 
 import java.io.File;
@@ -9,10 +10,12 @@ import java.util.ArrayList;
 /**
  * Created by Enrico on 13/05/2017.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class DrawingProject {
     //attributes
     private String projectID;
     private Installer creator;
+    @JsonIgnore
     private ArrayList<FittedComponent> componentList;
     private Shaft shaft;
     private FittedCarFrame carFrame;
@@ -20,6 +23,7 @@ public class DrawingProject {
     private FittedCarDoor carDoor;
     private FittedLandingDoor landingDoor;
     //singletons
+    @JsonIgnore
     public Parser parser;
 
     //methods
@@ -27,6 +31,8 @@ public class DrawingProject {
         componentList = new ArrayList<>();
         parser = Parser.getInstance();
     }
+
+    public ArrayList<FittedComponent> getComponentList(){return componentList;}
 
     public void setShaft(Shaft shaft) {
         componentList.add(shaft);
@@ -67,5 +73,7 @@ public class DrawingProject {
         DrawingProject drawingProject = new DrawingProject();
         parser.parseJsonProject2DrawingProject(projectJsonPath, drawingProject);
         drawingProject.render();
+
+        System.out.println(parser.parseComponents2Project(drawingProject));
     }
 }
