@@ -2,62 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="913469cb-6b3d-41f0-a750-16f785469483" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/Installer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/User.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/document.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/Database.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/DrawingProject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/Generator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/Installer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/AIMSLabServerInteraction/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/cad_project/AiLiftProject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadCircle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadCircle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadPath$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadPath.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadRectangle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/CadRectangle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/ICadComponent$Axis.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/ICadComponent$PathType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/components/ICadComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/exceptions/CollisionException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/main/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/render_output.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/render_output.txt.jscad" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/Installer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cad_project/AiLiftProject.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/CadCircle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/CadComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/CadPath.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/CadRectangle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/ICadComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/exceptions/CollisionException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/User.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/Database.java" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/Database.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/DrawingProject.java" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/DrawingProject.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/Generator.java" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/Generator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/AIMSLabServerInteraction/Parser.java" afterPath="$PROJECT_DIR$/src/AIMSLab_server_interaction/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../other/ClassDiagram2.dia" afterPath="$PROJECT_DIR$/../../other/ClassDiagram2.dia" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/drawing_entities/DrawingObject.class" afterPath="$PROJECT_DIR$/out/production/AILiftCreate/drawing_entities/DrawingObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/drawing_entities/Rectangle.class" afterPath="$PROJECT_DIR$/out/production/AILiftCreate/drawing_entities/Rectangle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/Component.class" afterPath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/Component.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/FittedComponent.class" afterPath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/FittedComponent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/Shaft.class" afterPath="$PROJECT_DIR$/out/production/AILiftCreate/project_components/Shaft.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawing_entities/DrawingObject.java" afterPath="$PROJECT_DIR$/src/drawing_entities/DrawingObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawing_entities/Rectangle.java" afterPath="$PROJECT_DIR$/src/drawing_entities/Rectangle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/Component.java" afterPath="$PROJECT_DIR$/src/project_components/Component.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedCar.java" afterPath="$PROJECT_DIR$/src/project_components/FittedCar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedCarDoor.java" afterPath="$PROJECT_DIR$/src/project_components/FittedCarDoor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedCarFrame.java" afterPath="$PROJECT_DIR$/src/project_components/FittedCarFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedComponent.java" afterPath="$PROJECT_DIR$/src/project_components/FittedComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedDoor.java" afterPath="$PROJECT_DIR$/src/project_components/FittedDoor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/FittedLandingDoor.java" afterPath="$PROJECT_DIR$/src/project_components/FittedLandingDoor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project_components/Shaft.java" afterPath="$PROJECT_DIR$/src/project_components/Shaft.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AILiftCreate.iml" afterPath="$PROJECT_DIR$/AILiftCreate.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -161,7 +106,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -255,7 +200,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -574,7 +519,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -587,7 +531,6 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29427084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -598,7 +541,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -776,13 +721,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="22" column="54" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/User.java" />
     <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-63">
@@ -804,27 +743,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/document.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AILiftCreate.userlibraries">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/document.json" />
+    <entry file="file://$PROJECT_DIR$/AILiftCreate.userlibraries" />
+    <entry file="file://$PROJECT_DIR$/.project" />
     <entry file="file://$PROJECT_DIR$/src/AIMSLab_server_interaction/Database.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -833,54 +754,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/DrawingProject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/Installer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/DrawingProject.class" />
+    <entry file="file://$PROJECT_DIR$/.classpath" />
+    <entry file="file://$PROJECT_DIR$/src/.classpath" />
+    <entry file="file://$PROJECT_DIR$/src/.project" />
+    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/Installer.class" />
+    <entry file="file://$PROJECT_DIR$/src/AIMSLabServerInteraction/.gitignore" />
     <entry file="file://$PROJECT_DIR$/src/project_components/FittedLandingDoor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
