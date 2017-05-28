@@ -1,4 +1,4 @@
-package AIMSLabServerInteraction;
+package AIMSLab_server_interaction;
 
 /**
  * Created by Enrico on 14/05/2017.

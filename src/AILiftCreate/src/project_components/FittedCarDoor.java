@@ -7,10 +7,6 @@ public class FittedCarDoor extends FittedDoor {
     //attributes
 
     //methods
-    public FittedCarDoor() {
-        super();
-    }
-
     public FittedCarDoor(String componentId, int totalWidth, int doorstep, int x, int y) {
         super(componentId, totalWidth, doorstep, x, y);
     }

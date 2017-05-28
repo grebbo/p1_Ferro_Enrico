@@ -1,6 +1,6 @@
 package drawing_entities;
 
-import components.CadComponent;
+import Stefano_package.components.CadComponent;
 
 /**
  * Created by Enrico on 14/05/2017.

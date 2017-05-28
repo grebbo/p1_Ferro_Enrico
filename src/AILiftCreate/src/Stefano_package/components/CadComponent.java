@@ -1,4 +1,4 @@
-package components;
+package Stefano_package.components;
 
 /**
  * This class is the main realisation of the interface ICadComponent, still is abstract

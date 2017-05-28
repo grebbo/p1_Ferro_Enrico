@@ -1,4 +1,4 @@
-package components;
+package Stefano_package.components;
 
 /**
  * This concrete class represent a rectangle, with the base point at the upper left.
@@ -10,7 +10,7 @@ package components;
  */
 public class CadRectangle extends CadComponent {
 	/**
-	 * This static number is used to avoid conflicts in components name
+	 * This static number is used to avoid conflicts in Stefano_package.components name
 	 * assigning an increasing number when a component is created
 	 */
 	private static int componentNumber;
@@ -173,14 +173,13 @@ public class CadRectangle extends CadComponent {
 	
 	@Override
 	public String toJsString()
-	{
-		int centerx = this.getX() + (int)this.getW()/2;
-		int centery = this.getY() + (int)this.getH()/2;
-		int radiusx = (int)this.getW()/2;
-		int radiusy = (int)this.getH()/2;
+	{		
+		String r = "var csg" + componentName + " = new CSG.Path2D([[" +
+				x_base + ", " + y_base + "], [" + (x_base + r_width) + ", " + y_base + "], [" +
+				(x_base + r_width) + ", " + (y_base + r_height) + "], [" + x_base + ", " + (y_base + r_height) + "]], true);\n";
+		String extrude = "	var " + componentName + " = csg" + componentName + 
+				".rectangularExtrude(0.5, 0.5, " + this.getRes() + ", false);";
 		
-		return "var " + componentName + " = CAG.rectangle({center: [" +
-				centerx + ", " + centery + "], radius: [" +
-				radiusx + ", " + radiusy + "]});";
+		return r.concat(extrude);
 	}
 }

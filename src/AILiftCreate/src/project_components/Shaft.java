@@ -1,8 +1,6 @@
 package project_components;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import drawing_entities.Rectangle;
+import drawing_entities.*;
 
 /**Class modeling the shaft (principal frame) of the elevator.
  * It inherits his attributes and methods from project_components.FittedComponent class
@@ -12,10 +10,6 @@ public class Shaft extends FittedComponent {
     //attributes
 
     //methods
-    public Shaft(){
-        super();
-    }
-
     public Shaft(String componentId, int frameWidth, int frameDepth, int x, int y) {
         super(componentId, frameWidth, frameDepth, x, y);
         //adding drawing elements for the specific component, given the measures we have

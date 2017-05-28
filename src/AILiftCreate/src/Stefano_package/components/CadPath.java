@@ -1,16 +1,22 @@
-package components;
+package Stefano_package.components;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
+ * This class represents a 2D path, as a sequence of points. This class is not working by now
+ * as JSCAD does not render 2D paths but needs to extrude them in 3D. While trying to reach a solution, 
+ * the class will be however used as it is, changing only the jscad render string when a solution
+ * will be found.
+ * 
+ * Note that the "OTHER" path is not considered at all, for now, as it will be a future feature.
  * 
  * @author 	Stefano Demarchi
  * @version 1.0.0
  */
 public class CadPath extends CadComponent {
 	/**
-	 * This static number is used to avoid conflicts in components name
+	 * This static number is used to avoid conflicts in Stefano_package.components name
 	 * assigning an increasing number when a component is created
 	 */
 	private static int componentNumber;
@@ -18,7 +24,7 @@ public class CadPath extends CadComponent {
 	/**
 	 * This is the list of nodes composing the path
 	 */
-	private ArrayList<Point2D> nodes;
+	private ArrayList<Point> nodes;
 	
 	/**
 	 * This is the actual type
@@ -34,6 +40,7 @@ public class CadPath extends CadComponent {
 		this.x_base = 0;
 		this.y_base = 0;
 		this.componentName = setName();
+		this.resolution = 70;
 		componentNumber++;
 	}
 	
@@ -50,6 +57,7 @@ public class CadPath extends CadComponent {
 			this.x_base = p.getX();
 			this.y_base = p.getY();
 			this.componentName = setName();
+			this.resolution = 70;
 			componentNumber++;
 		}
 	}
@@ -60,7 +68,7 @@ public class CadPath extends CadComponent {
 	 * @param n 	Path's nodes
 	 * @param t 	Path type
 	 */
-	public CadPath(ArrayList<Point2D> n, String t)
+	public CadPath(ArrayList<Point> n, String t)
 	{
 		if(!n.isEmpty())
 		{
@@ -77,13 +85,13 @@ public class CadPath extends CadComponent {
 	 * @param rx	Relative X-coord
 	 * @param ry	Relative Y-coord
 	 */
-	public CadPath(ArrayList<Point2D> n, String t, CadComponent c, int rx, int ry)
+	public CadPath(ArrayList<Point> n, String t, CadComponent c, int rx, int ry)
 	{
 		init(n, t);
 		int x_rel = c.getX() + rx;
 		int y_rel = c.getY() + ry;
 		
-		for(Point2D nod:nodes)
+		for(Point nod:nodes)
 			nod.setLocation(x_rel, y_rel);
 		
 		setPosition((int)nodes.get(0).getX(), (int)nodes.get(0).getY());
@@ -95,9 +103,9 @@ public class CadPath extends CadComponent {
 	 * @param n 	Path's nodes
 	 * @param t 	Path type
 	 */
-	private void init(ArrayList<Point2D> n, String t)
+	private void init(ArrayList<Point> n, String t)
 	{
-		this.nodes = new ArrayList<Point2D>(n);
+		this.nodes = new ArrayList<Point>(n);
 		setPosition((int)nodes.get(0).getX(), (int)nodes.get(0).getY());
 			
 		switch(t)
@@ -117,6 +125,7 @@ public class CadPath extends CadComponent {
 		}
 		
 		this.componentName = setName();
+		this.resolution = 70;
 		componentNumber++;
 	}
 	
@@ -129,7 +138,7 @@ public class CadPath extends CadComponent {
 	 */
 	public void movePath(int x_shift, int y_shift)
 	{
-		for(Point2D n:nodes)
+		for(Point n:nodes)
 			n.setLocation(n.getX() + x_shift, n.getY() + y_shift);
 		
 		setPosition((int)nodes.get(0).getX(), (int)nodes.get(0).getY());
@@ -145,7 +154,7 @@ public class CadPath extends CadComponent {
 	 */
 	public void movePoint(int x_shift, int y_shift, int pointIdx)
 	{
-		Point2D n = nodes.get(pointIdx);
+		Point n = nodes.get(pointIdx);
 		nodes.get(pointIdx).setLocation(n.getX() + x_shift, n.getY() + y_shift);
 	}
 	
@@ -156,23 +165,23 @@ public class CadPath extends CadComponent {
 	 */
 	private String jscadLine()
 	{
-		String jscadpath = "var csg" + componentName + " = new CSG.Path2D([";
+		String line = "var csg" + componentName + " = new CSG.Path2D([";
 		
 		for(int i = 0; i < nodes.size(); i++)
 		{
-			Point2D n = nodes.get(i);
-			jscadpath = jscadpath.concat("[" + (int)n.getX() + ", " + (int)n.getY() + "]");
+			Point n = nodes.get(i);
+			line = line.concat("[" + n.getX() + ", " + n.getY() + "]");
 			
 			if(i != nodes.size() - 1)
-				jscadpath = jscadpath.concat(", ");
+				line = line.concat(", ");
 		}
 		
-		jscadpath = jscadpath.concat("], false);\n");
-		// Extrusion makes the path non exportable in DXF
-		String extrude = "var " + componentName + " = csg" + componentName + 
-						".rectangularExtrude(0.1, 0.1, " + this.resolution + ", false);";
+		line = line.concat("], false);\n");
+
+		String extrude = "	var " + componentName + " = csg" + componentName + 
+						".rectangularExtrude(0.5, 0.5, " + this.resolution + ", false);";
 		
-		return jscadpath.concat(extrude);
+		return line.concat(extrude);
 	}
 	
 	/**
@@ -182,8 +191,29 @@ public class CadPath extends CadComponent {
 	 */
 	private String jscadArc()
 	{
-		// Need center, radius and startAngle/endAngle
-		return "";
+		// Three nodes: center, start & end. Further nodes will not be considered
+		if(nodes.size() < 2)
+			return "";
+		else
+		{
+			int ox = (int)nodes.get(0).getX();
+			int oy = (int)nodes.get(0).getY();
+			int ax = (int)nodes.get(1).getX();
+			int ay = (int)nodes.get(1).getY();
+			int by = (int)nodes.get(2).getY();
+			double radius = Math.hypot(ox - ax, oy - ay);
+			// Angles are computed starting from points A & B
+			int startAng = (int)Math.toDegrees(Math.asin((oy+ay)/radius));
+			int endAng = (int)Math.toDegrees(Math.asin((oy+by)/radius));
+			
+			String arc = "var csg" + componentName + " = CSG.Path2D.arc({ center: [" + ox + ", " + oy + 
+					"], radius: " + radius + ", startangle: " + startAng + ", endangle: " + endAng +
+					", resolution: " + this.resolution + "});\n";
+			String extrude = "	var " + componentName + " = csg" + componentName + 
+					".rectangularExtrude(0.5, 0.5, " + this.getRes() + ", false);";
+			
+			return arc.concat(extrude);
+		}
 	}
 	
 	/**
@@ -224,7 +254,7 @@ public class CadPath extends CadComponent {
 	 * 
 	 * @return 			The point at pointIdx
 	 */
-	public Point2D getNode(int pointIdx)
+	public Point getNode(int pointIdx)
 	{
 		return nodes.get(pointIdx);
 	}
@@ -232,7 +262,8 @@ public class CadPath extends CadComponent {
 	@Override
 	public void setPosition(int x, int y)
 	{
-		this.setPosition((int)nodes.get(0).getX(), (int)nodes.get(0).getY());
+		this.x_base = x;
+		this.y_base = y;
 	}
 	
 	@Override

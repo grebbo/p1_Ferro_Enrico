@@ -1,7 +1,7 @@
 package project_components;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import drawing_entities.Rectangle;
+import com.fasterxml.jackson.annotation.*;
+import drawing_entities.*;
 
 /**
  * Created by enric on 23/05/2017.
@@ -14,12 +14,6 @@ public class FittedCar extends FittedComponent {
     private int totalDepth;
 
     //methods
-    public FittedCar() {
-        super();
-        totalWidth = 0;
-        totalDepth = 0;
-    }
-
     public FittedCar(String componentId, int totalWidth, int totalDepth, int x, int y) {
         super(componentId, totalWidth, totalDepth, x, y);
         this.totalWidth = totalWidth;

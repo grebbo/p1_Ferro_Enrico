@@ -1,6 +1,6 @@
 package drawing_entities;
 
-import components.CadRectangle;
+import Stefano_package.components.CadRectangle;
 
 /**
  * Created by enric on 22/05/2017.

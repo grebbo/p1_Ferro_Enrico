@@ -1,7 +1,7 @@
-package components;
+package Stefano_package.components;
 
 /**
- * This interface gives the main rules to create components: get & set necessary methods and
+ * This interface gives the main rules to create Stefano_package.components: get & set necessary methods and
  * the core of the application: a JS writer that will draw CAD elements.
  * 
  * @author 	Stefano Demarchi
@@ -37,7 +37,8 @@ public interface ICadComponent {
 	public void setPosition(int x, int y);
 	
 	/**
-	 * This method will be used in order to detect collisions
+	 * This method will be used in order to detect collisions:
+	 * it projects the component on the selected axis
 	 * 
 	 * @param ax the axis to project on
 	 * 

@@ -1,6 +1,6 @@
-package components;
+package Stefano_package.components;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 /**
  * This concrete class represent a circle, with the base point being the center.
@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
  */
 public class CadCircle extends CadComponent {
 	/**
-	 * This static number is used to avoid conflicts in components name
+	 * This static number is used to avoid conflicts in Stefano_package.components name
 	 * assigning an increasing number when a component is created
 	 */
 	private static int componentNumber;
@@ -25,14 +25,14 @@ public class CadCircle extends CadComponent {
 	/**
 	 * This is the center of the circle
 	 */
-	private Point2D center;
+	private Point center;
 	
 	/**
 	 * Default constructor (goniometric cfr)
 	 */
 	public CadCircle()
 	{
-		Point2D p = new Point2D.Double();
+		Point p = new Point();
 		p.setLocation(0, 0);
 		init(1, p);
 	}
@@ -54,7 +54,7 @@ public class CadCircle extends CadComponent {
 	 * @param radius The radius of the circle
 	 * @param center The 2D center of the circle
 	 */
-	public CadCircle(int radius, Point2D center)
+	public CadCircle(int radius, Point center)
 	{
 		init(radius, center);
 	}
@@ -68,7 +68,7 @@ public class CadCircle extends CadComponent {
 	 */
 	public CadCircle(int radius, int cx, int cy)
 	{
-		Point2D p = new Point2D.Double();
+		Point p = new Point();
 		p.setLocation(cx, cy);
 		init(radius, p);
 	}
@@ -83,7 +83,7 @@ public class CadCircle extends CadComponent {
 	 */
 	public CadCircle(int radius, CadComponent c, int rx, int ry)
 	{
-		Point2D p = new Point2D.Double();
+		Point p = new Point();
 		p.setLocation(c.getX() + rx, c.getY() + ry);
 		init(radius, p);
 	}
@@ -94,7 +94,7 @@ public class CadCircle extends CadComponent {
 	 * @param r Radius
 	 * @param c Center
 	 */
-	private void init(int r, Point2D c)
+	private void init(int r, Point c)
 	{
 		if(r >= 0)
 			this.radius = r;
@@ -123,7 +123,7 @@ public class CadCircle extends CadComponent {
 	 * 
 	 * @return The center point
 	 */
-	public Point2D getCenter()
+	public Point getCenter()
 	{
 		return this.center;
 	}
@@ -183,8 +183,12 @@ public class CadCircle extends CadComponent {
 	@Override
 	public String toJsString()
 	{		
-		return "var " + componentName + " = CAG.circle({center: [" +
-				x_base + ", " + y_base + "], radius: " +
-				this.getRadius() + ", resolution: "+ this.getRes() + "});";
+		String c = "var csg" + componentName + " = CSG.Path2D.arc({ center: [" + x_base + ", " + y_base + 
+					"], radius: " + radius + ", startangle: " + 0 + ", endangle: " + 360 +
+					", resolution: " + this.resolution + "});\n";
+		String extrude = "	var " + componentName + " = csg" + componentName + 
+				".rectangularExtrude(0.5, 0.5, " + this.getRes() + ", false);";
+		
+		return c.concat(extrude);
 	}
 }

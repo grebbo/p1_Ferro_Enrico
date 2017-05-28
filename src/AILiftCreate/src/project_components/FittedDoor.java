@@ -1,7 +1,7 @@
 package project_components;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import drawing_entities.Rectangle;
+import drawing_entities.*;
 
 /**
  * Created by enric on 23/05/2017.

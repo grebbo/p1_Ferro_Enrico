@@ -1,28 +1,32 @@
-package cad_project;
+package Stefano_package.cad_project;
 
 import java.util.ArrayList;
 
-import components.CadComponent;
-import components.ICadComponent.Axis;
-import exceptions.CollisionException;
+import Stefano_package.components.CadComponent;
+import Stefano_package.components.ICadComponent.Axis;
+import Stefano_package.exceptions.CollisionException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * This class represents a complete CAD project: it has a list of components that is dynamically updated
+ * This class represents a complete CAD project: it has a list of Stefano_package.components that is dynamically updated
  * and, for each component insertion, it checks whether the component added will collide with all the others.
  * It gives also a method to create a file that will make the CAD project visualizable and editable with other programs.
  * 
  * @author Stefano Demarchi
  * @version 1.0.0
  */
-public class AiLiftProject 
-{
+public class AiLiftProject {
 	/**
-	 * All the components that compose the project
+	 * All the Stefano_package.components that compose the project
 	 */
 	private ArrayList<CadComponent> components;
+	
+	/**
+	 * Tolerance in collisions
+	 */
+	private int collisionTolerance;
 	
 	/**
 	 * Default constructor
@@ -30,11 +34,15 @@ public class AiLiftProject
 	public AiLiftProject()
 	{
 		components = new ArrayList<CadComponent>();
+		collisionTolerance = 5;
 	}
 	
 	/**
-	 * This method is used to check if two components collide
+	 * This method is used to check if two Stefano_package.components collide
 	 * If a collision occurs, a CollisionException is thrown
+	 * 
+	 * The algorithm used to check collisions is a raw linear projection on
+	 * the two axes: it works as a charm on rectangles but must be improved for circles and paths
 	 * 
 	 * @param c1	the first component
 	 * @param c2	the second component
@@ -43,19 +51,27 @@ public class AiLiftProject
 	 */
 	private void checkCollision(CadComponent cA, CadComponent cB) throws CollisionException
 	{
+		// Get bounding box expanded by tolerance
 		int xA[] = cA.linearProjection(Axis.X_AXIS);
+		xA[0] += collisionTolerance;
+		xA[1] -= collisionTolerance;
 		int xB[] = cB.linearProjection(Axis.X_AXIS);
+		xB[0] += collisionTolerance;
+		xB[1] -= collisionTolerance;
 		int yA[] = cA.linearProjection(Axis.Y_AXIS);
+		yA[0] += collisionTolerance;
+		yA[1] -= collisionTolerance;
 		int yB[] = cB.linearProjection(Axis.Y_AXIS);
+		yB[0] += collisionTolerance;
+		yB[1] -= collisionTolerance;
 		
-		if ((xA[0] > xB[0] && xA[0] < xB[1] || xA[1] > xB[0] && xA[1] < xB[1]) &&
-			(yA[0] > yB[0] && yA[0] < yB[1] || yA[1] > yB[0] && yA[1] < yB[1]))
-			throw new CollisionException("Components " + cA.getName() + " and " + 
-											cB.getName() + " collided!");
+		if((xA[0] > xB[0] && xA[0] < xB[1] || xA[1] > xB[0] && xA[1] < xB[1]) &&
+		   (yA[0] > yB[0] && yA[0] < yB[1] || yA[1] > yB[0] && yA[1] < yB[1]))
+			throw new CollisionException(cA.getName(), cB.getName());
 	}
 	
 	/**
-	 * Method to add components to the actual project
+	 * Method to add Stefano_package.components to the actual project
 	 * -> dynamic creation and update
 	 * 
 	 * @param comp 	The component to add
@@ -70,7 +86,7 @@ public class AiLiftProject
 			comp.setPosition(comp.getX() + dx, comp.getY() + dy);
 		
 		boolean r = false;
-		/*
+		
 		try
 		{
 			for(CadComponent c:components)
@@ -83,13 +99,12 @@ public class AiLiftProject
 			e.printErrorMessage();
 			return false;
 		}
-		*/
-		r = components.add(comp);
+		
 		return r;
 	}
 	
 	/**
-	 * Method to remove components from the actual project
+	 * Method to remove Stefano_package.components from the actual project
 	 * -> dynamic deletion and update
 	 * 
 	 * @param comp 	The component to remove
@@ -116,13 +131,22 @@ public class AiLiftProject
 	}
 	
 	/**
-	 * Get method for components number
+	 * Get method for Stefano_package.components number
 	 * 
-	 * @return the total components used in the project
+	 * @return the total Stefano_package.components used in the project
 	 */
 	public int getTotalComponents()
 	{
 		return components.size();
+	}
+	
+	/**
+	 * Tolerance setter
+	 */
+	public void setTolerance(int tol)
+	{
+		if(tol > 0 /* && tol < max_tol */)
+			collisionTolerance = tol;
 	}
 	
 	/**
@@ -136,13 +160,13 @@ public class AiLiftProject
 	{
 		// Header string: comments & main
 		String head = "// AI Lift-Create :: Auto-generated code\n" +
-						"// Total components in project: " +
+						"// Total Stefano_package.components in project: " +
 						this.getTotalComponents() + "\n\n" +
 						"function main()\n{";
 			
 		String content = "";
 			
-		// Loop components
+		// Loop Stefano_package.components
 		for(CadComponent c:components)
 			content = content.concat("	" + c.toJsString() + "\n");
 			
@@ -154,7 +178,7 @@ public class AiLiftProject
 		content = content.concat(components.get(components.size() - 1).getName() + ");\n");
 			
 		// Close main
-		String end = "	return merge.scale(0.01);\n}";
+		String end = "	return merge.scale(0.5);\n}";
 		
 		try 
 		{
