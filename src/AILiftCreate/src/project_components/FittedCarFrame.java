@@ -12,17 +12,43 @@ public class FittedCarFrame extends FittedComponent {
     private int wallDistance;
     @JsonProperty("dist_cabina_asse_guide")
     private int cabinDistance;
-    @JsonProperty("ingtrasv")
-    private int ingTrasv;
+    @JsonProperty("dtg")
+    private int dtg;
+    @JsonProperty("carFrameHydraBracket")
+    private Bracket bracket;
+    @JsonProperty("carRails")
+    private CarRail carRail;
 
     //methods
-    public FittedCarFrame(String componentId, int wallDistance, int cabinDistance, int ingTrasv, int x, int y) {
-        super(componentId, wallDistance+cabinDistance, ingTrasv, x, y);
+    public FittedCarFrame(String componentId, int wallDistance, int cabinDistance, int dtg, int x, int y, Bracket bracket, CarRail carRail) {
+        super(componentId, wallDistance+cabinDistance, dtg + 2*(bracket.getHeight() + carRail.getP() + carRail.getH1()), x, y);
         this.wallDistance = wallDistance;
         this.cabinDistance = cabinDistance;
-        this.ingTrasv = ingTrasv;
-        Rectangle carFrameFrame = new Rectangle(x, y, getFrameWidth(), getFrameDepth());
-        getDrawingStructure().add(carFrameFrame);
+        this.bracket = bracket;
+        this.carRail = carRail;
+        this.dtg = dtg;
+        //add carFrame frame to drawing structure
+        getDrawingStructure().add(new Rectangle(x, y, getFrameWidth(), getFrameDepth()));
+        //add brackets drawing entities to drawing structure
+        getDrawingStructure().add(new Rectangle( x, y, bracket.getWidth(), bracket.getHeight()));
+        getDrawingStructure().add(new Rectangle( x, y + getFrameDepth() - bracket.getHeight(),
+                                                bracket.getWidth(), bracket.getHeight()));
+        //add carails to structure
+        getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getB1()/2,
+                                                y + bracket.getHeight(),
+                                                carRail.getB1(), carRail.getP()));
+        getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getK()/2,
+                                                y + bracket.getHeight() + carRail.getP(),
+                                                carRail.getK(), carRail.getH1()));
+        getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getB1()/2,
+                                                y + getFrameDepth() - (bracket.getHeight() + carRail.getP()),
+                                                carRail.getB1(), carRail.getP()));
+        getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getK()/2,
+                                                y + getFrameDepth() - (bracket.getHeight() + carRail.getP() + carRail.getH1()),
+                                                carRail.getK(), carRail.getH1()));
+
     }
+
+
 
 }

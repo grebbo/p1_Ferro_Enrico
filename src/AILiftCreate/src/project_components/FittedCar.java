@@ -8,10 +8,11 @@ import drawing_entities.*;
  */
 public class FittedCar extends FittedComponent {
     //attributes
-    @JsonProperty("totalWidth")
+    @JsonProperty("width")
     private int totalWidth;
-    @JsonProperty("totalDepth")
+    @JsonProperty("depth")
     private int totalDepth;
+
 
     //methods
     public FittedCar(String componentId, int totalWidth, int totalDepth, int x, int y) {

@@ -1,40 +1,34 @@
 package Stefano_package.cad_project;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import Stefano_package.components.CadComponent;
+import Stefano_package.components.CadComponent3D;
 import Stefano_package.components.ICadComponent.Axis;
 import Stefano_package.exceptions.CollisionException;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 /**
- * This class represents a complete CAD project: it has a list of Stefano_package.components that is dynamically updated
+ * This class represents a complete 3D CAD project: it has a list of Stefano_package.components that is dynamically updated
  * and, for each component insertion, it checks whether the component added will collide with all the others.
  * It gives also a method to create a file that will make the CAD project visualizable and editable with other programs.
  * 
  * @author Stefano Demarchi
  * @version 1.0.0
  */
-public class AiLiftProject {
+public class AiLiftProject3D {
 	/**
-	 * All the Stefano_package.components that compose the project
+	 * All the 3D Stefano_package.components that compose the project
 	 */
-	private ArrayList<CadComponent> components;
-	
-	/**
-	 * Tolerance in collisions
-	 */
-	private int collisionTolerance;
+	private ArrayList<CadComponent3D> components;
 	
 	/**
 	 * Default constructor
 	 */
-	public AiLiftProject()
+	public AiLiftProject3D()
 	{
-		components = new ArrayList<CadComponent>();
-		collisionTolerance = 5;
+		components = new ArrayList<CadComponent3D>();
 	}
 	
 	/**
@@ -42,31 +36,29 @@ public class AiLiftProject {
 	 * If a collision occurs, a CollisionException is thrown
 	 * 
 	 * The algorithm used to check collisions is a raw linear projection on
-	 * the two axes: it works as a charm on rectangles but must be improved for circles and paths
+	 * the three axes: it works as a charm on parallelepipeds but should be improved for cylinders
 	 * 
 	 * @param c1	the first component
 	 * @param c2	the second component
 	 * 
 	 * @throws CollisionException
 	 */
-	private void checkCollision(CadComponent cA, CadComponent cB) throws CollisionException
+	private void checkCollision(CadComponent3D cA, CadComponent3D cB) throws CollisionException
 	{
-		// Get bounding box expanded by tolerance
-		int xA[] = cA.linearProjection(Axis.X_AXIS);
-		xA[0] += collisionTolerance;
-		xA[1] -= collisionTolerance;
-		int xB[] = cB.linearProjection(Axis.X_AXIS);
-		xB[0] += collisionTolerance;
-		xB[1] -= collisionTolerance;
-		int yA[] = cA.linearProjection(Axis.Y_AXIS);
-		yA[0] += collisionTolerance;
-		yA[1] -= collisionTolerance;
-		int yB[] = cB.linearProjection(Axis.Y_AXIS);
-		yB[0] += collisionTolerance;
-		yB[1] -= collisionTolerance;
+		// Get bounding box
+		int xA[] = cA.projection(Axis.X_AXIS);
+		int xB[] = cB.projection(Axis.X_AXIS);
+		int yA[] = cA.projection(Axis.Y_AXIS);
+		int yB[] = cB.projection(Axis.Y_AXIS);
+		int zA[] = cA.projection(Axis.Z_AXIS);
+		int zB[] = cB.projection(Axis.Z_AXIS);
 		
-		if((xA[0] > xB[0] && xA[0] < xB[1] || xA[1] > xB[0] && xA[1] < xB[1]) &&
-		   (yA[0] > yB[0] && yA[0] < yB[1] || yA[1] > yB[0] && yA[1] < yB[1]))
+		if(((xA[0] >= xB[0] && xA[0] <= xB[1] || xA[1] >= xB[0] && xA[1] <= xB[1]) &&
+		    (yA[0] >= yB[0] && yA[0] <= yB[1] || yA[1] >= yB[0] && yA[1] <= yB[1]) &&
+		    (zA[0] >= zB[0] && zA[0] <= zB[1] || zA[1] >= zB[0] && zA[1] <= zB[1])) ||
+				((xB[0] >= xA[0] && xB[0] <= xA[1] || xB[1] >= xA[0] && xB[1] <= xA[1]) &&
+			     (yB[0] >= yA[0] && yB[0] <= yA[1] || yB[1] >= yA[0] && yB[1] <= yA[1]) &&
+			     (zB[0] >= zA[0] && zB[0] <= zA[1] || zB[1] >= zA[0] && zB[1] <= zA[1])))
 			throw new CollisionException(cA.getName(), cB.getName());
 	}
 	
@@ -74,22 +66,25 @@ public class AiLiftProject {
 	 * Method to add Stefano_package.components to the actual project
 	 * -> dynamic creation and update
 	 * 
-	 * @param comp 	The component to add
-	 * @param dx 	x-shift (0 to ignore)
-	 * @param dy	y-shift (0 to ignore)
+	 * @param comp 		The component to add
+	 * @param dx 		x-shift (0 to ignore)
+	 * @param dy		y-shift (0 to ignore)
+	 * @param dz		z-shift
+	 * @param tolerance the tolerance in collisions
 	 * 
 	 * @return 		true if component is added, false otherwise
 	 */
-	public boolean addComponent(CadComponent comp, int dx, int dy)
+	public boolean addComponent(CadComponent3D comp, int dx, int dy, int dz, int tolerance)
 	{
-		if(dx != 0 || dy != 0)
-			comp.setPosition(comp.getX() + dx, comp.getY() + dy);
+		if(dx != 0 || dy != 0 || dz != 0)
+			comp.setPosition(comp.getX() + dx, comp.getY() + dy, comp.getZ() + dz);
 		
+		comp.setTolerance(tolerance);
 		boolean r = false;
 		
 		try
 		{
-			for(CadComponent c:components)
+			for(CadComponent3D c:components)
 				checkCollision(comp, c);
 			
 			r = components.add(comp);
@@ -107,9 +102,9 @@ public class AiLiftProject {
 	 * Method to remove Stefano_package.components from the actual project
 	 * -> dynamic deletion and update
 	 * 
-	 * @param comp 	The component to remove
+	 * @param componentName	The component to remove
 	 * 
-	 * @return 		true if component is removed, false otherwise
+	 * @return 	true if component is removed, false otherwise
 	 */
 	public boolean rmComponent(String componentName)
 	{
@@ -141,12 +136,20 @@ public class AiLiftProject {
 	}
 	
 	/**
-	 * Tolerance setter
+	 * This method is used to project a 3D figure onto a 2D plane
+	 * 
+	 * @param ax the source axis of the projection
+	 * 
+	 * @return The list of 2D Stefano_package.components
 	 */
-	public void setTolerance(int tol)
+	public ArrayList<CadComponent> getComponentsFromOrtho(Axis ax)
 	{
-		if(tol > 0 /* && tol < max_tol */)
-			collisionTolerance = tol;
+		ArrayList<CadComponent> comp_projection = new ArrayList<CadComponent>();
+		
+		for(CadComponent3D c:components)
+			comp_projection.add(c.getProjected2DFigure(ax));
+		
+		return comp_projection;
 	}
 	
 	/**
@@ -178,7 +181,7 @@ public class AiLiftProject {
 		content = content.concat(components.get(components.size() - 1).getName() + ");\n");
 			
 		// Close main
-		String end = "	return merge.scale(0.5);\n}";
+		String end = "	return merge.scale(0.1);\n}";
 		
 		try 
 		{

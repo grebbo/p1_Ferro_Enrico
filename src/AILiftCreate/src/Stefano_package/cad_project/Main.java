@@ -1,40 +1,38 @@
 package Stefano_package.cad_project;
 
-import java.awt.Point;
-import java.util.ArrayList;
+import Stefano_package.components.*;
+import Stefano_package.components.ICadComponent.Axis;
+import Stefano_package.components._3d.*;
+import javafx.geometry.Point3D;
 
-import Stefano_package.components.CadCircle;
-import Stefano_package.components.CadComponent;
-import Stefano_package.components.CadPath;
-import Stefano_package.components.CadRectangle;
-
-/**
- * This main is only to test compilation
- * 
- * @author Stefano Demarchi
- * @version 1.0.0
- */
 public class Main {
+	/**
+	 * Testing purpose
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		AiLiftProject3D p = new AiLiftProject3D();
+		
+		CadComponent3D pp1 = new CadParallelepiped(90, 60, 90, 100, 500, 100);
+		CadComponent3D pp2 = new CadParallelepiped(-1, -1, -1, -10, -10, -10);
+		CadComponent3D pp3 = new CadParallelepiped(20, 20, 20, 60, 30, 50);
+		Point3D point = new Point3D(-10, -50, 0);
+		CadComponent3D cy1 = new CadCylinder(point, 38, 140, Axis.X_AXIS);
 
-	public static void main(String[] args) {
-		AiLiftProject p = new AiLiftProject();
-		
-		CadComponent r1 = new CadRectangle(10, -80, 50, 50);
-		CadComponent r2 = new CadRectangle(-10, 100, 90, 60);
-		CadComponent c1 = new CadCircle(5, 16, 19);
-		ArrayList<Point> l = new ArrayList<Point>();
-		Point c = new Point(0, 0);
-		Point a = new Point(-15,0);
-		Point b = new Point(0, 15);
-		l.add(c);
-		l.add(a);
-		l.add(b);
-		CadComponent p1 = new CadPath(l, "ARC");
-		p.addComponent(r1, 0, 0);
-		p.addComponent(r2, 0, 0);
-		p.addComponent(c1, 10, 10);
-		p.addComponent(p1, 0, 0);
-		
-		p.toFile_jscad("out");
+		p.addComponent(cy1, 0, 0, 0, 0);
+		p.addComponent(pp1, 0, 0, 0, 0);
+		p.addComponent(pp2, 0, 0, 0, 0);
+		p.addComponent(pp3, 0, 0, 0, 0);
+
+		p.toFile_jscad("3d");
+
+		AiLiftProject2D p2Dx = new AiLiftProject2D(p, Axis.X_AXIS);
+		p2Dx.toFile_jscad("2Dx", false);
+		AiLiftProject2D p2Dy = new AiLiftProject2D(p, Axis.Y_AXIS);
+		p2Dy.toFile_jscad("2Dy", false);
+		AiLiftProject2D p2Dz = new AiLiftProject2D(p, Axis.Z_AXIS);
+		p2Dz.toFile_jscad("2Dz", false);
 	}
 }

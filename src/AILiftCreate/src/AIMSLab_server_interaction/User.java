@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.*;
 
 /**
  * Created by Enrico on 13/05/2017.
+ * This class models the generic user and makes no distinction between Installer and Validator.
  */
-//abstract class, that model the generic user and makes no distinction between Installer and Validator,
-//two of the main user type of the complete system
+
 public abstract class User {
-    //attributes
+    /**
+     * @attributes
+     * general infos about the user
+     */
     @JsonProperty("name")
     private String name;
     @JsonProperty("lastname")
@@ -19,7 +22,11 @@ public abstract class User {
     private String username;
     @JsonProperty("password")
     private String password;
-    //methods
+
+    /**
+     * @methods
+     * constructor
+     */
     public User(String name, String surname,String address, String username, String password){
         this.name = name;
         this.surname = surname;

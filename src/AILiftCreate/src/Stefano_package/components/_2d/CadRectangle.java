@@ -1,4 +1,6 @@
-package Stefano_package.components;
+package Stefano_package.components._2d;
+
+import Stefano_package.components.CadComponent;
 
 /**
  * This concrete class represent a rectangle, with the base point at the upper left.
@@ -83,18 +85,23 @@ public class CadRectangle extends CadComponent {
 	 * @param h 	Height
 	 */
 	private void init(int x, int y, int w, int h)
-	{		
+	{	
+		setPosition(x, y);
 		if(w > 0)
 			this.r_width = w;
-		else
-			this.r_width = 0 - w;
+		else // If width is negative, translate the base point
+		{
+			this.r_width = Math.abs(w);
+			this.x_base -= r_width;
+		}
 		if(h > 0)
 			this.r_height = h;
-		else
-			this.r_height = 0 - h;
-		
-		setPosition(x, y);
-		this.resolution = 70;
+		else // Same for height
+		{
+			this.r_height = Math.abs(h);
+			this.y_base -= r_height;
+		}
+		setRes(0); // No need for resolution
 		this.componentName = "rectangle_" + componentNumber;
 		componentNumber++;
 	}
@@ -127,20 +134,20 @@ public class CadRectangle extends CadComponent {
 	}
 	
 	@Override
-	public int[] linearProjection(Axis ax)
+	public int[] projection(Axis ax)
 	{
 		int points[] = new int[2];
 		
 		switch(ax)
 		{
 			case X_AXIS:
-				points[0] = this.x_base;
-				points[1] = this.x_base + this.r_width;
+				points[0] = this.x_base + getTolerance();
+				points[1] = this.x_base + this.r_width - getTolerance();
 				break;
 				
 			case Y_AXIS:
-				points[0] = this.y_base;
-				points[1] = this.y_base + this.r_height;
+				points[0] = this.y_base + getTolerance();
+				points[1] = this.y_base + this.r_height - getTolerance();
 				break;
 				
 			case Z_AXIS:
@@ -173,13 +180,17 @@ public class CadRectangle extends CadComponent {
 	
 	@Override
 	public String toJsString()
-	{		
-		String r = "var csg" + componentName + " = new CSG.Path2D([[" +
-				x_base + ", " + y_base + "], [" + (x_base + r_width) + ", " + y_base + "], [" +
-				(x_base + r_width) + ", " + (y_base + r_height) + "], [" + x_base + ", " + (y_base + r_height) + "]], true);\n";
-		String extrude = "	var " + componentName + " = csg" + componentName + 
-				".rectangularExtrude(0.5, 0.5, " + this.getRes() + ", false);";
+	{	
+		double radius_x = r_width / 2;
+		double radius_y = r_height / 2;
+		double center_x = x_base + radius_x;
+		double center_y = y_base + radius_y;
 		
-		return r.concat(extrude);
+		String r = "var " + componentName + " = difference(CAG.rectangle({center: [" + center_x + ", " + center_y + "], " + 
+																"radius: [" + radius_x + ", " + radius_y + "]}), " +
+															"CAG.rectangle({center: [" + center_x + ", " + center_y + "], " +
+																"radius: [" + (radius_x - 0.5) + ", " + (radius_y - 0.5) + "]}))";
+
+		return r.concat(getExtrusionString());
 	}
 }

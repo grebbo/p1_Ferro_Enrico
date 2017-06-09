@@ -2,8 +2,9 @@ package AIMSLab_server_interaction;
 
  /**
   * Created by Enrico on 14/05/2017.
-  * Parser used to convert the json files given by the AIMSLabServer of the projects to
-  * the objects that fit the structure of the software, in order to be rendered
+  * Singleton class, only one instance is needed in the system lifetime.
+  * Parser used to convert the json files given by the AIMSLabServer of the projects to the objects that fits the
+  * structure of the software, ready to be rendered.
   */
 
 import com.fasterxml.jackson.databind.*;
@@ -13,17 +14,19 @@ import java.io.IOException;
 
 
 public class Parser {
-    //attributes
-    //used for json reading and to model the structure of the json as a class
+    /**
+     * @attributes
+     * jsonCursor -> used to browse through the json
+     * instance -> singleton instance
+     */
     private JsonNode jsonCursor;
-    //this class is a singleton, that is there can be only one instance at time (static for this reason)
     private static Parser instance;
 
-    //methods
-    //as this class is a singleton the constructor method is in a private scope, as can only be
-    //called by the getInstace() below
+    /**
+     * @methods
+     * Private constructor and getInstance used for the singleton structure
+     */
     private void Parser(){jsonCursor = null;}
-    //returns the current (and only) instance of the class or creates one if there isn't any
     public static Parser getInstance(){
         if(instance == null) {
             instance = new Parser();
@@ -31,8 +34,12 @@ public class Parser {
         return instance;
     }
 
-    //method to parse from json file to drawingProject class structure
-    //takes the json path as a parameter and returns the project created from it
+    /**
+     * This method uses the Jackson's library methods in order to browse and retrieve infos from the json file. For each
+     * component the useful params are taken and used to create and populate che project class.
+     * @param projectJsonPath -> json file with the project infos
+     * @return DrawingProject -> project class populated relatively to json content
+     */
     public DrawingProject parseJson2DrawingProject(String projectJsonPath) {
         DrawingProject drawingProject = new DrawingProject();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -43,7 +50,9 @@ public class Parser {
             e.printStackTrace();
         }
 
-        //grab generico infos of the project (creator and id)
+        //about project
+        drawingProject.setProjectID(jsonCursor.get("id").asText());
+        //about installer user
         JsonNode userJson = jsonCursor.get("user");
         Installer installer = new Installer(userJson.get("name").asText(),
                                             userJson.get("lastname").asText(),
@@ -53,41 +62,49 @@ public class Parser {
                                             userJson.get("id").asText());
         drawingProject.setCreator(installer);
 
-        drawingProject.setProjectID(jsonCursor.get("id").asText());
-
-        //NOTE: x and y defined by default. They're the postion of the drawing starting point (top-left)
-        //grab shaft parameters and add to project
+        //about shaft
         JsonNode shaftJson = jsonCursor.get("shaft");
         Shaft shaft = new Shaft(shaftJson.get("id").asText() ,
                                 shaftJson.get("width").asInt(),
                                 shaftJson.get("depth").asInt(),
+                                shaftJson.get("travel").asInt()/2,
                                 0,
                                 0);
         drawingProject.setShaft(shaft);
 
 
-        //grab carFrame parameters and add to project
+        //about carFrame and its sub-components
         JsonNode fittedCarFrameJson = jsonCursor.get("fittedCarFrameHydra");
         JsonNode carFrameJson = fittedCarFrameJson.get("carFrameHydra");
+        JsonNode bracketJson = fittedCarFrameJson.get("carFrameHydraBracket");
+        JsonNode carRailJson = fittedCarFrameJson.get("carRails");
+        Bracket bracket = new Bracket(bracketJson.get("w2").asInt(),
+                                      bracketJson.get("h2").asInt());
+        CarRail carRail = new CarRail(carRailJson.get("p").asInt(),
+                                      carRailJson.get("b1").asInt(),
+                                      carRailJson.get("h1").asInt(),
+                                      carRailJson.get("k").asInt());
         FittedCarFrame carFrame = new FittedCarFrame(carFrameJson.get("id").asText(),
                                                     carFrameJson.get("dist_asse_guide_filomuro").asInt(),
                                                     carFrameJson.get("dist_cabina_asse_guide").asInt(),
-                                                    carFrameJson.get("ingtrasv").asInt(),
+                                                    carFrameJson.get("dtg").asInt(),
                                                     fittedCarFrameJson.get("xbp").asInt(),
-                                                    fittedCarFrameJson.get("ybp").asInt());
+                                                    fittedCarFrameJson.get("ybp").asInt(),
+                                                    bracket,
+                                                    carRail);
         drawingProject.setCarFrame(carFrame);
 
-        //grab car parameters and add to project
+        //about car
         JsonNode fittedCarJson = jsonCursor.get("fittedCar");
         JsonNode carJson = fittedCarJson.get("car");
         FittedCar car = new FittedCar(  carJson.get("id").asText(),
-                                        carJson.get("totalWidth").asInt(),
-                                        carJson.get("totalDepth").asInt(),
+                                        carJson.get("width").asInt(),
+                                        carJson.get("depth").asInt(),
                                         fittedCarJson.get("xBp").asInt(),
                                         fittedCarJson.get("yBp").asInt());
         drawingProject.setCar(car);
 
-        //grab carDoor parameters and add to project
+        //about carDoor
         JsonNode fittedCarDoorJson = jsonCursor.get("fittedCarDoorP");
         JsonNode carDoorJson = fittedCarDoorJson.get("carDoor");
         FittedCarDoor carDoor = new FittedCarDoor(  carDoorJson.get("id").asText(),
@@ -97,7 +114,7 @@ public class Parser {
                                                     fittedCarDoorJson.get("ybp").asInt());
         drawingProject.setCarDoor(carDoor);
 
-        //grab landingDoor parameters and add to project
+        //about landingDoor
         JsonNode fittedLandingDoorJson = jsonCursor.get("fittedLandingDoor");
         JsonNode landingDoorJson = fittedLandingDoorJson.get("landingDoor");
         FittedLandingDoor landingDoor = new FittedLandingDoor(  landingDoorJson.get("id").asText(),
@@ -106,11 +123,17 @@ public class Parser {
                                                                 fittedLandingDoorJson.get("xbp").asInt(),
                                                                 fittedLandingDoorJson.get("ybp").asInt());
         drawingProject.setLandingDoor(landingDoor);
+
         return drawingProject;
     }
 
-    //from given AIMSLab_server_interaction.DrawingProject to json, in order to be exported
-    //creates a the json string of the project
+    /**
+     * This method uses the Jackson's library methods in order to parse the DrawingProject structure into a json file
+     * that will be sent to the AIMSLabServer. The object mapper class scans the project class and sub-classes and,
+     * thanks to the used tags, generate the json string.
+     * @param drawingProject -> project to be parsed
+     * @return String -> json file content
+     */
     public String parseDrawingProject2Json(DrawingProject drawingProject){
         String projectJson = "";
         ObjectMapper objectMapper = new ObjectMapper();

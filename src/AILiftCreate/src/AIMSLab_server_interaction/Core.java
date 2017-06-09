@@ -1,5 +1,7 @@
 package AIMSLab_server_interaction;
 
+import Stefano_package.cad_project.AiLiftProject2D;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -19,7 +21,7 @@ public class Core {
         //fill the project structure according to the json
         drawingProject = drawingProject.parser.parseJson2DrawingProject(projectJsonPath);
         //render project (creates jscad file used to render)
-        drawingProject.render();
+        drawingProject.render(new AiLiftProject2D());
     }
 
     public static String onSaveProjectSelection() {

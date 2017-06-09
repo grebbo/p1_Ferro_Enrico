@@ -5,24 +5,23 @@ import java.util.ArrayList;
 
 /**
  * Created by Enrico on 13/05/2017.
+ * This class models the Installer user, extending the User class.
  */
-//extends the user class, giving more details of the user
+
 public class Installer extends User {
-    //attributes
+    /**
+     * @attributes
+     * installerID -> id of the user
+     */
     @JsonProperty("id")
     private String installerID;
-    @JsonIgnore
-    private ArrayList<DrawingProject> activeDrawingProjects;
 
-    //methods
+    /**
+     * @methods
+     * constructor
+     */
     public Installer(String name, String surname, String address, String installerID, String username, String password){
         super(name, surname, address, username, password);
         this.installerID = installerID;
     }
-
-    //adds a new project to the ones already active in the installer's profile
-    public void addActiveProject(DrawingProject project) {
-        activeDrawingProjects.add(project);
-    }
-
 }

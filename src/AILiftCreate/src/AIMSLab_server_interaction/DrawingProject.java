@@ -1,28 +1,34 @@
 package AIMSLab_server_interaction;
 
-import Stefano_package.cad_project.AiLiftProject;
+import Stefano_package.cad_project.AiLiftProject2D;
 import com.fasterxml.jackson.annotation.*;
 import project_components.*;
 
-import java.io.File;
 import java.util.ArrayList;
 
-/**this class models the project structure. Uses all the annotations in order to be parsed by
- * the jackson's library methods.
+/**
+ * This class models the project structure.
  * Created by Enrico on 13/05/2017.
  */
 
-//tag that grants access to each field (private or public) during the parsing operation
+/**
+ * Tag that grants access to each field (private or public) during the parsing operation
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class DrawingProject {
-    //attributes
-    //each attribute has its tag in order to be recognised in the json and still mantaining name in line with
-    //the OOP conventions
+    /**
+     * @attributes
+     * Tags are used to map attributes to json fields, mantaining name in line with the OOP conventions.
+     * id -> project identifier
+     * user -> project creator
+     * componentList -> container of FittedComponents, used for better fruition
+     * lift components -> each type of component that forms the lift structure
+     * parser -> singleton class, used to parse the json fil containing the project structure and populate the class
+     */
     @JsonProperty("id")
     private String projectID;
     @JsonProperty("user")
     private Installer creator;
-    //component list that groups all the Stefano_package.components below, used for a better access to them
     @JsonIgnore
     private ArrayList<FittedComponent> componentList;
     @JsonProperty("shaft")
@@ -35,17 +41,17 @@ public class DrawingProject {
     private FittedCarDoor carDoor;
     @JsonProperty("fittedLandingDoor")
     private FittedLandingDoor landingDoor;
-    //singletons
     @JsonIgnore
     public Parser parser;
 
-    //methods
+    /**
+     * @methods
+     * constructor, getters and setters
+     */
     public DrawingProject(){
         componentList = new ArrayList<>();
         parser = Parser.getInstance();
     }
-
-    //useful getters and setters
     public ArrayList<FittedComponent> getComponentList(){return componentList;}
     public void setShaft(Shaft shaft) {
         componentList.add(shaft);
@@ -70,17 +76,16 @@ public class DrawingProject {
     public void setProjectID(String projectID) {this.projectID = projectID;}
     public void setCreator(Installer creator) {this.creator = creator;}
 
-    //render function: this is a first version of the render function.
-    //This creates a file "render output" containing the code for the jscad web application,
-    // available at " https://openjscad.org/ ". The content of the above mentioned file can be rendered
-    //simply by drag-n-dropping it in the box in the bottom left.
-    //In a second version of the software such operations will be automatic.
-    public void render(){
-        //create a render project object and writes to a file ".jscad" the strings with the commands
-        AiLiftProject project2render = new AiLiftProject();
+    /**
+     * First version of the render function. It is not an effective rendering, it instead generate a file to be used as
+     * input in the jscad web app ("https://openjscad.org/"). See readme.md for instructions about this. In a second
+     * version of the software such operations will be automatic.
+     * @param project2render -> project rendering file
+     */
+    public void render(AiLiftProject2D project2render){
         for (FittedComponent c: componentList) {
             c.render(project2render);
         }
-        project2render.toFile_jscad("render_output");
+        project2render.toFile_jscad("render_output", true);
     }
 }

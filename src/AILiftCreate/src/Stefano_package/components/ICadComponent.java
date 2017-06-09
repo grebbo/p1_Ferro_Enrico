@@ -7,17 +7,7 @@ package Stefano_package.components;
  * @author 	Stefano Demarchi
  * @version 1.0.0
  */
-public interface ICadComponent {
-	/**
-	 * This field shows all the admissible paths
-	 */
-	public enum PathType
-	{ 
-		LINE, 
-		ARC, 
-		OTHER 
-	};
-	
+public interface ICadComponent {	
 	/**
 	 * Enumerator for axes
 	 */
@@ -38,13 +28,14 @@ public interface ICadComponent {
 	
 	/**
 	 * This method will be used in order to detect collisions:
-	 * it projects the component on the selected axis
+	 * it projects the component on the selected axis (2D component)
+	 * or on the plane where the axis is the normal (3D component)
 	 * 
 	 * @param ax the axis to project on
 	 * 
 	 * @return the x1 and x2 of the segment in a 2-element array
 	 */
-	public int[] linearProjection(Axis ax);
+	public int[] projection(Axis ax);
 	
 	/**
 	 * Get method for x

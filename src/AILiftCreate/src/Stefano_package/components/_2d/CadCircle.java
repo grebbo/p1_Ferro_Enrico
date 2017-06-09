@@ -1,6 +1,8 @@
-package Stefano_package.components;
+package Stefano_package.components._2d;
 
 import java.awt.Point;
+
+import Stefano_package.components.CadComponent;
 
 /**
  * This concrete class represent a circle, with the base point being the center.
@@ -32,8 +34,7 @@ public class CadCircle extends CadComponent {
 	 */
 	public CadCircle()
 	{
-		Point p = new Point();
-		p.setLocation(0, 0);
+		Point p = new Point(0, 0);
 		init(1, p);
 	}
 	
@@ -96,14 +97,14 @@ public class CadCircle extends CadComponent {
 	 */
 	private void init(int r, Point c)
 	{
-		if(r >= 0)
-			this.radius = r;
+		if(r < 0)
+			this.radius = Math.abs(r);
 		else
-			this.radius = 1; // Add error message?
-
+			this.radius = r;
+		
 		setPosition((int)c.getX(), (int)c.getY());
 		this.center = c;
-		this.resolution = 70;
+		setRes(70);
 		this.componentName = "circle_" + componentNumber;
 		componentNumber++;
 	}
@@ -136,20 +137,20 @@ public class CadCircle extends CadComponent {
 	}
 	
 	@Override
-	public int[] linearProjection(Axis ax)
+	public int[] projection(Axis ax)
 	{
 		int points[] = new int[2];
 		
 		switch(ax)
 		{
 			case X_AXIS:
-				points[0] = this.x_base - this.radius;
-				points[1] = this.x_base + this.radius;
+				points[0] = this.x_base - this.radius + getTolerance();
+				points[1] = this.x_base + this.radius - getTolerance();
 				break;
 				
 			case Y_AXIS:
-				points[0] = this.y_base - this.radius;
-				points[1] = this.y_base + this.radius;
+				points[0] = this.y_base - this.radius + getTolerance();
+				points[1] = this.y_base + this.radius - getTolerance();
 				break;
 				
 			case Z_AXIS:
@@ -183,12 +184,11 @@ public class CadCircle extends CadComponent {
 	@Override
 	public String toJsString()
 	{		
-		String c = "var csg" + componentName + " = CSG.Path2D.arc({ center: [" + x_base + ", " + y_base + 
-					"], radius: " + radius + ", startangle: " + 0 + ", endangle: " + 360 +
-					", resolution: " + this.resolution + "});\n";
-		String extrude = "	var " + componentName + " = csg" + componentName + 
-				".rectangularExtrude(0.5, 0.5, " + this.getRes() + ", false);";
-		
-		return c.concat(extrude);
+		String c = "var " + componentName + " = difference(CAG.circle({center: [" + x_base + ", " + y_base + "], " +
+											"radius: " + radius + ", resolution: " + getRes() + "}), " +
+											"CAG.circle({center: [" + x_base + ", " + y_base + "], " +
+											"radius: " + (radius - 0.5) + ", resolution: " + getRes() + "}))";
+
+		return c.concat(getExtrusionString());
 	}
 }
