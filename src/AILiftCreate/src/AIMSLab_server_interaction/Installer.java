@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.*;
 import java.util.ArrayList;
 
 /**
- * Created by Enrico on 13/05/2017.
  * This class models the Installer user, extending the User class.
+ *
+ * @author Enrico Ferro
  */
 
 public class Installer extends User {

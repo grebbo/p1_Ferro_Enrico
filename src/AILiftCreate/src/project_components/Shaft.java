@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import drawing_entities.*;
 
 /**
- * Created by enric on 23/05/2017.
  * Class modeling the shaft (general frame) of the lift.
- * It inherits his attributes and methods from FittedComponent class
+ *
+ * @author Enrico Ferro
  */
 public class Shaft extends FittedComponent {
     /**
@@ -37,9 +37,10 @@ public class Shaft extends FittedComponent {
     public void setTravel(int travel) {this.travel = travel;}
 
     /**
-     * @param project2render -> project file
      * Override of the FittedComponent method. This is the only component we want to be extruded in this version of the
-     * software, so the extrusionFactor is set else than zero.
+     * software, so the extrusionFactor is set else than default value.
+     *
+     * @param project2render project file
      */
     public void render(AiLiftProject2D project2render){
         for (DrawingObject dObject: getDrawingStructure() ) {

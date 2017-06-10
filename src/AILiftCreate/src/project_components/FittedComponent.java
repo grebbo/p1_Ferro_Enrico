@@ -8,9 +8,10 @@ import drawing_entities.*;
 import java.util.ArrayList;
 
 /**
- * Created by Enrico on 13/05/2017.
  * This class models a component once is assigned to a project, in order to be drawn. For this reason it extends
  * the Component class with drawing-related attributes
+ *
+ * @author Enrico Ferro
  */
 public class FittedComponent extends Component {
     /**
@@ -48,9 +49,12 @@ public class FittedComponent extends Component {
     public void setDrawingStartingPoint_y(int drawingStartingPoint_y) {this.drawingStartingPoint_y = drawingStartingPoint_y;}
 
     /**
-     * @param myProject -> rendering project to be populated with rendering elements
      * Primitive method to "render" (that is create the rendering string for the ".jscad" file) the FittedComponent.
      * It creates a rendering object for each element in drawingStructure and adds it to the project.
+     * The extrusion factor, used to give a 3D effect to the project drawing, is set to 1 by default. It's changed
+     * overriding the function in children classes if needed.
+     *
+     * @param myProject rendering project to be populated with rendering elements
      */
     public void render(AiLiftProject2D myProject) {
         for (DrawingObject dObject: drawingStructure ) {

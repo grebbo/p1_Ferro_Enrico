@@ -4,22 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import drawing_entities.*;
 
 /**
- * Created by enric on 23/05/2017.
+ * This class models the door component of the project.
+ *
+ * @author Enrico Ferro
  */
 public class FittedDoor extends FittedComponent {
-    //attributes
+    /**
+     * @attributes
+     * componenti dimensions
+     */
     @JsonProperty("totalWidth")
     private int totalWidth;
     @JsonProperty("doorstep")
     private int doorstep;
 
-    //methods
-    public FittedDoor() {
-        super();
-        totalWidth = 0;
-        doorstep = 0;
-    }
+    /**
+     * @methods
+     * constructor
+     */
 
+    /**
+     * It sets the door values and creates the related drawing structure.
+     */
     public FittedDoor(String componentId, int totalWidth, int doorstep, int x, int y) {
         super(componentId, totalWidth, doorstep, x, y);
         this.totalWidth = totalWidth;

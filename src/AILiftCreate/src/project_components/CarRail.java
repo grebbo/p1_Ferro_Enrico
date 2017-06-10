@@ -3,17 +3,19 @@ package project_components;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Created by enric on 01/06/2017.
+ * This class models the carRail sub-component.
+ *
+ * @author Enrico Ferro
  */
 public class CarRail {
-    //attributes
-    //ortho rectangle
+    /**
+     * @attributes
+     * car rail component dimensions
+     */
     @JsonProperty("p")
     private int p;
     @JsonProperty("b1")
     private int b1;
-
-    //par rectangle
     @JsonProperty("h1")
     private int h1;
     @JsonProperty("k")

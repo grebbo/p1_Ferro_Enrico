@@ -1,10 +1,11 @@
 package AIMSLab_server_interaction;
 
  /**
-  * Created by Enrico on 14/05/2017.
   * Singleton class, only one instance is needed in the system lifetime.
   * Parser used to convert the json files given by the AIMSLabServer of the projects to the objects that fits the
   * structure of the software, ready to be rendered.
+  *
+  * @author Enrico Ferro
   */
 
 import com.fasterxml.jackson.databind.*;
@@ -37,13 +38,13 @@ public class Parser {
     /**
      * This method uses the Jackson's library methods in order to browse and retrieve infos from the json file. For each
      * component the useful params are taken and used to create and populate che project class.
-     * @param projectJsonPath -> json file with the project infos
-     * @return DrawingProject -> project class populated relatively to json content
+     *
+     * @param jsonFile json file with the project infos
+     * @return project class populated relatively to json content
      */
-    public DrawingProject parseJson2DrawingProject(String projectJsonPath) {
+    public DrawingProject parseJson2DrawingProject(File jsonFile) {
         DrawingProject drawingProject = new DrawingProject();
         ObjectMapper objectMapper = new ObjectMapper();
-        File jsonFile = new File(projectJsonPath);
         try {
             jsonCursor = objectMapper.readValue(jsonFile, JsonNode.class);
         } catch (IOException e) {
@@ -131,8 +132,9 @@ public class Parser {
      * This method uses the Jackson's library methods in order to parse the DrawingProject structure into a json file
      * that will be sent to the AIMSLabServer. The object mapper class scans the project class and sub-classes and,
      * thanks to the used tags, generate the json string.
-     * @param drawingProject -> project to be parsed
-     * @return String -> json file content
+     *
+     * @param drawingProject project to be parsed
+     * @return json file content
      */
     public String parseDrawingProject2Json(DrawingProject drawingProject){
         String projectJson = "";

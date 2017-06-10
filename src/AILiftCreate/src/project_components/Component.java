@@ -3,10 +3,11 @@ package project_components;
 import com.fasterxml.jackson.annotation.*;
 import java.util.ArrayList;
 
-/** Created by Enrico on 13/05/2017.
- *
+/**
  * Primitive entity of the project. It has no features drawing-related
- * and is only described with the essential attributes
+ * and is only described with the essential attributes.
+ *
+ * @author Enrico Ferro
  */
 
 public abstract class Component {
@@ -48,7 +49,9 @@ public abstract class Component {
     public void setFrameDepth(int frameDepth) {this.frameDepth = frameDepth;}
 
     /**
-     * @param c -> component to be added to compatibility list
+     * Adds a component to the compatibility list.
+     *
+     * @param c component to be added to compatibility list
      */
     public void addCompatibleComponent(Component c){
         compatibleComponents.add(c);

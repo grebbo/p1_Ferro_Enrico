@@ -3,16 +3,24 @@ package project_components;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Created by enric on 01/06/2017.
+ * This class models the bracket sub-component.
+ *
+ * @author Enrico Ferro
  */
 public class Bracket {
-    //attributes
+    /**
+     * @attributes
+     * width, height -> bracket dimensions
+     */
     @JsonProperty("w2")
     private int width;
     @JsonProperty("h2")
     private int height;
 
-    //methods
+    /**
+     * @methods
+     * constructor and getters
+     */
     public Bracket(int width, int height){
         this.width = width;
         this.height = height;

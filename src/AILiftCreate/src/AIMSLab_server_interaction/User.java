@@ -3,8 +3,9 @@ package AIMSLab_server_interaction;
 import com.fasterxml.jackson.annotation.*;
 
 /**
- * Created by Enrico on 13/05/2017.
  * This class models the generic user and makes no distinction between Installer and Validator.
+ *
+ * @author Enrico Ferro
  */
 
 public abstract class User {

@@ -12,14 +12,13 @@ import java.util.Scanner;
  */
 public class Core {
     //for the first version of the software the project is locally stored and isn't retrieved by the server
-    private static String projectJsonPath = "1400_1700_CFSX";
     private static DrawingProject drawingProject;
 
     public static void onNewProjectSelection(){
         //init project
         drawingProject = new DrawingProject();
         //fill the project structure according to the json
-        drawingProject = drawingProject.parser.parseJson2DrawingProject(projectJsonPath);
+        drawingProject = drawingProject.parser.parseJson2DrawingProject(AIMSLabServer.getInstance().getJsonFromServer());
         //render project (creates jscad file used to render)
         drawingProject.render(new AiLiftProject2D());
     }

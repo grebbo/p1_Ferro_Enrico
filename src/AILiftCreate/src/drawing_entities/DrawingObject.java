@@ -3,9 +3,10 @@ package drawing_entities;
 import Stefano_package.components.CadComponent;
 
 /**
- * Created by Enrico on 14/05/2017.
  * This class represents the primitive drawing entity, that is better defined in the children classes. It is the one
  * that has the methods for rendering.
+ *
+ * @author Enrico Ferro
  */
 public abstract class DrawingObject {
     /**

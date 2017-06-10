@@ -1,12 +1,15 @@
 package project_components;
 
 /**
- * Created by enric on 23/05/2017.
+ * This class models the door landing-side
+ *
+ * @author Enrico Ferro
  */
 public class FittedLandingDoor extends FittedDoor {
-    //attributes
-
-    //methods
+    /**
+     * @methods
+     * constructor
+     */
     public FittedLandingDoor(String compoonentId, int totalWidth, int doorstep, int x, int y) {
         super(compoonentId, totalWidth, doorstep, x, y);
     }

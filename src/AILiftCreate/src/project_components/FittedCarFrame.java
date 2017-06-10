@@ -4,10 +4,15 @@ import com.fasterxml.jackson.annotation.*;
 import drawing_entities.*;
 
 /**
- * Created by enric on 23/05/2017.
+ * It models the carFrame(lateral lift moving guide). It has some sub-components that defines the structure in a more
+ * detailed way than the mere frame.
+ * @author Enrico Ferro
  */
 public class FittedCarFrame extends FittedComponent {
-    //attributes
+    /**
+     * @attributes
+     * component dimensions and sub components
+     */
     @JsonProperty("dist_asse_guide_filomuro")
     private int wallDistance;
     @JsonProperty("dist_cabina_asse_guide")
@@ -19,7 +24,15 @@ public class FittedCarFrame extends FittedComponent {
     @JsonProperty("carRails")
     private CarRail carRail;
 
-    //methods
+    /**
+     * @methods
+     * constructor
+     */
+
+    /**
+     * Constructor that sets all values and sub-components of the carframe. Then it defines the drawing structure
+     * for each of the entities (general frame, brackets, carrails).
+     */
     public FittedCarFrame(String componentId, int wallDistance, int cabinDistance, int dtg, int x, int y, Bracket bracket, CarRail carRail) {
         super(componentId, wallDistance+cabinDistance, dtg + 2*(bracket.getHeight() + carRail.getP() + carRail.getH1()), x, y);
         this.wallDistance = wallDistance;

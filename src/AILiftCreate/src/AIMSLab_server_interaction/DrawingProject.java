@@ -7,8 +7,9 @@ import project_components.*;
 import java.util.ArrayList;
 
 /**
- * This class models the project structure.
- * Created by Enrico on 13/05/2017.
+ * This class models the project infos (id, installer) and structure (components).
+ *
+ * @author Enrico Ferro
  */
 
 /**
@@ -80,6 +81,7 @@ public class DrawingProject {
      * First version of the render function. It is not an effective rendering, it instead generate a file to be used as
      * input in the jscad web app ("https://openjscad.org/"). See readme.md for instructions about this. In a second
      * version of the software such operations will be automatic.
+     *
      * @param project2render -> project rendering file
      */
     public void render(AiLiftProject2D project2render){
