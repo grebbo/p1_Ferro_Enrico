@@ -7,7 +7,7 @@ import project_components.*;
 import java.util.ArrayList;
 
 /**
- * This class models the project infos (id, installer) and structure (components).
+ * This class models the project infos (id, installer) and structure (Stefano_package.components).
  *
  * @author Enrico Ferro
  */
@@ -23,7 +23,7 @@ public class DrawingProject {
      * id -> project identifier
      * user -> project creator
      * componentList -> container of FittedComponents, used for better fruition
-     * lift components -> each type of component that forms the lift structure
+     * lift Stefano_package.components -> each type of component that forms the lift structure
      * parser -> singleton class, used to parse the json fil containing the project structure and populate the class
      */
     @JsonProperty("id")

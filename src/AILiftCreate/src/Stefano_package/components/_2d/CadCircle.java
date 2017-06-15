@@ -184,10 +184,10 @@ public class CadCircle extends CadComponent {
 	@Override
 	public String toJsString()
 	{		
-		String c = "var " + componentName + " = difference(CAG.circle({center: [" + x_base + ", " + y_base + "], " +
-											"radius: " + radius + ", resolution: " + getRes() + "}), " +
-											"CAG.circle({center: [" + x_base + ", " + y_base + "], " +
-											"radius: " + (radius - 0.5) + ", resolution: " + getRes() + "}))";
+		String c = "var " + componentName + " = difference(CAG.circle({center: [" + x_base + ", " + Math.negateExact(y_base) + "], " +
+						"radius: " + radius + ", resolution: " + getRes() + "}), " +
+						"CAG.circle({center: [" + x_base + ", " + Math.negateExact(y_base) + "], " +
+						"radius: " + (radius - 0.5) + ", resolution: " + getRes() + "}))";
 
 		return c.concat(getExtrusionString());
 	}

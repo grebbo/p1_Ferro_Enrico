@@ -224,8 +224,8 @@ public class CadParallelepiped extends CadComponent3D {
 	@Override
 	public String toJsString() 
 	{
-		return "var " + componentName + " = CSG.cube({corner1: [" + x_base + ", " + y_base + ", " + z_base + 
-					"], corner2: [" + (x_base + getDim("x")) + ", " + (y_base + getDim("y")) + ", " + (z_base + getDim("z")) +
+		return "var " + componentName + " = CSG.cube({corner1: [" + x_base + ", " + Math.negateExact(y_base) + ", " + z_base + 
+					"], corner2: [" + (x_base + getDim("x")) + ", " + (Math.negateExact(y_base) - getDim("y")) + ", " + (z_base + getDim("z")) +
 					"]});";
 	}
 

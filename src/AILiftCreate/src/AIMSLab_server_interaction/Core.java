@@ -18,7 +18,7 @@ public class Core {
         //init project
         drawingProject = new DrawingProject();
         //fill the project structure according to the json
-        drawingProject = drawingProject.parser.parseJson2DrawingProject(AIMSLabServer.getInstance().getJsonFromServer());
+        drawingProject = drawingProject.parser.parseJson2DrawingProject(AIMSLabServer.getInstance().createProjectFromMeasures(null));
         //render project (creates jscad file used to render)
         drawingProject.render(new AiLiftProject2D());
     }

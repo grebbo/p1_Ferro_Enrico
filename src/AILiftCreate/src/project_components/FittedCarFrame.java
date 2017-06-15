@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.*;
 import drawing_entities.*;
 
 /**
- * It models the carFrame(lateral lift moving guide). It has some sub-components that defines the structure in a more
+ * It models the carFrame(lateral lift moving guide). It has some sub-Stefano_package.components that defines the structure in a more
  * detailed way than the mere frame.
+ *
  * @author Enrico Ferro
  */
 public class FittedCarFrame extends FittedComponent {
     /**
      * @attributes
-     * component dimensions and sub components
+     * component dimensions and sub Stefano_package.components
      */
     @JsonProperty("dist_asse_guide_filomuro")
     private int wallDistance;
@@ -23,6 +24,8 @@ public class FittedCarFrame extends FittedComponent {
     private Bracket bracket;
     @JsonProperty("carRails")
     private CarRail carRail;
+    @JsonProperty("dist_pistone_guida_SX")
+    private int pistDistance;
 
     /**
      * @methods
@@ -30,16 +33,17 @@ public class FittedCarFrame extends FittedComponent {
      */
 
     /**
-     * Constructor that sets all values and sub-components of the carframe. Then it defines the drawing structure
+     * Constructor that sets all values and sub-Stefano_package.components of the carframe. Then it defines the drawing structure
      * for each of the entities (general frame, brackets, carrails).
      */
-    public FittedCarFrame(String componentId, int wallDistance, int cabinDistance, int dtg, int x, int y, Bracket bracket, CarRail carRail) {
+    public FittedCarFrame(String componentId, int wallDistance, int cabinDistance, int dtg, int x, int y, Bracket bracket, CarRail carRail, int pistDistance) {
         super(componentId, wallDistance+cabinDistance, dtg + 2*(bracket.getHeight() + carRail.getP() + carRail.getH1()), x, y);
         this.wallDistance = wallDistance;
         this.cabinDistance = cabinDistance;
         this.bracket = bracket;
         this.carRail = carRail;
         this.dtg = dtg;
+        this.pistDistance = pistDistance;
         //add carFrame frame to drawing structure
         getDrawingStructure().add(new Rectangle(x, y, getFrameWidth(), getFrameDepth()));
         //add brackets drawing entities to drawing structure
@@ -59,9 +63,16 @@ public class FittedCarFrame extends FittedComponent {
         getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getK()/2,
                                                 y + getFrameDepth() - (bracket.getHeight() + carRail.getP() + carRail.getH1()),
                                                 carRail.getK(), carRail.getH1()));
+        //add meccanic frame
+        getDrawingStructure().add(new Rectangle(x + wallDistance - carRail.getB1()/2,
+                                                y + bracket.getHeight() + carRail.getP()+ carRail.getH1(),
+                                                carRail.getB1(), dtg));
+        //add piston comp
+        getDrawingStructure().add(new Circle(x + wallDistance,
+                                             y + bracket.getHeight() + carRail.getP()+ carRail.getH1() + pistDistance,
+                                             carRail.getB1()/2));
 
     }
-
 
 
 }

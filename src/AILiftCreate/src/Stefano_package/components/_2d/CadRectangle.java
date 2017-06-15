@@ -186,10 +186,10 @@ public class CadRectangle extends CadComponent {
 		double center_x = x_base + radius_x;
 		double center_y = y_base + radius_y;
 		
-		String r = "var " + componentName + " = difference(CAG.rectangle({center: [" + center_x + ", " + center_y + "], " + 
-																"radius: [" + radius_x + ", " + radius_y + "]}), " +
-															"CAG.rectangle({center: [" + center_x + ", " + center_y + "], " +
-																"radius: [" + (radius_x - 0.5) + ", " + (radius_y - 0.5) + "]}))";
+		String r = "var " + componentName + " = difference(CAG.rectangle({center: [" + center_x + ", " + Math.negateExact((int)center_y) + "], " + 
+						"radius: [" + radius_x + ", " + radius_y + "]}), " +
+						"CAG.rectangle({center: [" + center_x + ", " + Math.negateExact((int)center_y) + "], " +
+						"radius: [" + (radius_x - 0.5) + ", " + (radius_y - 0.5) + "]}))";
 
 		return r.concat(getExtrusionString());
 	}

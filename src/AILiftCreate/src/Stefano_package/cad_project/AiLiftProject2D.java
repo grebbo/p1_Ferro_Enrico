@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * This class represents a complete 2D CAD project: it has a list of Stefano_package.components that is dynamically updated
+ * This class represents a complete 2D CAD project: it has a list of Stefano_package.Stefano_package.components that is dynamically updated
  * and, for each component insertion, it checks whether the component added will collide with all the others.
  * It gives also a method to create a file that will make the CAD project visualizable and editable with other programs.
  * 
@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  */
 public class AiLiftProject2D {
 	/**
-	 * All the Stefano_package.components that compose the project
+	 * All the Stefano_package.Stefano_package.components that compose the project
 	 */
 	private ArrayList<CadComponent> components;
 	
@@ -37,7 +37,7 @@ public class AiLiftProject2D {
 	}
 	
 	/**
-	 * This method is used to check if two Stefano_package.components collide
+	 * This method is used to check if two Stefano_package.Stefano_package.components collide
 	 * If a collision occurs, a CollisionException is thrown
 	 * 
 	 * The algorithm used to check collisions is a raw linear projection on
@@ -64,7 +64,7 @@ public class AiLiftProject2D {
 	}
 	
 	/**
-	 * Method to add Stefano_package.components to the actual project
+	 * Method to add Stefano_package.Stefano_package.components to the actual project
 	 * -> dynamic creation and update
 	 * 
 	 * @param comp 				The component to add
@@ -101,7 +101,7 @@ public class AiLiftProject2D {
 	}
 	
 	/**
-	 * Method to remove Stefano_package.components from the actual project
+	 * Method to remove Stefano_package.Stefano_package.components from the actual project
 	 * -> dynamic deletion and update
 	 * 
 	 * @param componentName 	The component to remove
@@ -128,9 +128,9 @@ public class AiLiftProject2D {
 	}
 	
 	/**
-	 * Get method for Stefano_package.components number
+	 * Get method for Stefano_package.Stefano_package.components number
 	 * 
-	 * @return the total Stefano_package.components used in the project
+	 * @return the total Stefano_package.Stefano_package.components used in the project
 	 */
 	public int getTotalComponents()
 	{
@@ -155,7 +155,7 @@ public class AiLiftProject2D {
 		}
 		else
 		{
-			// Look for Stefano_package.components with extrusion = 0 and set 0.5 (invisible such that is rendered)
+			// Look for Stefano_package.Stefano_package.components with extrusion = 0 and set 0.5 (invisible such that is rendered)
 			for(CadComponent c:components)
 			{
 				if(c.getExtrusionString() == ";\n")
@@ -165,13 +165,13 @@ public class AiLiftProject2D {
 			
 		// Header string: comments & main
 		String head = "// AI Lift-Create :: Auto-generated code\n" +
-						"// Total Stefano_package.components in project: " +
+						"// Total Stefano_package.Stefano_package.components in project: " +
 						this.getTotalComponents() + "\n\n" +
 						"function main()\n{";
 			
 		String content = "";
 			
-		// Loop Stefano_package.components
+		// Loop Stefano_package.Stefano_package.components
 		for(CadComponent c:components)
 			content = content.concat("	" + c.toJsString() + "\n");
 			

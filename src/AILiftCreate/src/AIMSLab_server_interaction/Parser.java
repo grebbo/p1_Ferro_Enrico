@@ -74,7 +74,7 @@ public class Parser {
         drawingProject.setShaft(shaft);
 
 
-        //about carFrame and its sub-components
+        //about carFrame and its sub-Stefano_package.components
         JsonNode fittedCarFrameJson = jsonCursor.get("fittedCarFrameHydra");
         JsonNode carFrameJson = fittedCarFrameJson.get("carFrameHydra");
         JsonNode bracketJson = fittedCarFrameJson.get("carFrameHydraBracket");
@@ -92,7 +92,8 @@ public class Parser {
                                                     fittedCarFrameJson.get("xbp").asInt(),
                                                     fittedCarFrameJson.get("ybp").asInt(),
                                                     bracket,
-                                                    carRail);
+                                                    carRail,
+                                                    carFrameJson.get("dist_pistone_guida_SX").asInt());
         drawingProject.setCarFrame(carFrame);
 
         //about car
@@ -101,8 +102,8 @@ public class Parser {
         FittedCar car = new FittedCar(  carJson.get("id").asText(),
                                         carJson.get("width").asInt(),
                                         carJson.get("depth").asInt(),
-                                        fittedCarJson.get("xBp").asInt(),
-                                        fittedCarJson.get("yBp").asInt());
+                                        fittedCarJson.get("xbp").asInt(),
+                                        fittedCarJson.get("ybp").asInt());
         drawingProject.setCar(car);
 
         //about carDoor
@@ -112,7 +113,9 @@ public class Parser {
                                                     carDoorJson.get("totalWidth").asInt(),
                                                     carDoorJson.get("doorstep").asInt(),
                                                     fittedCarDoorJson.get("xbp").asInt(),
-                                                    fittedCarDoorJson.get("ybp").asInt());
+                                                    fittedCarDoorJson.get("ybp").asInt(),
+                                                    carDoorJson.get("doorType").asText(),
+                                                    carDoorJson.get("numshutters").asInt());
         drawingProject.setCarDoor(carDoor);
 
         //about landingDoor
@@ -122,7 +125,9 @@ public class Parser {
                                                                 landingDoorJson.get("totalWidth").asInt(),
                                                                 landingDoorJson.get("doorstep").asInt(),
                                                                 fittedLandingDoorJson.get("xbp").asInt(),
-                                                                fittedLandingDoorJson.get("ybp").asInt());
+                                                                fittedLandingDoorJson.get("ybp").asInt(),
+                                                                carDoorJson.get("doorType").asText(),
+                                                                carDoorJson.get("numshutters").asInt());
         drawingProject.setLandingDoor(landingDoor);
 
         return drawingProject;

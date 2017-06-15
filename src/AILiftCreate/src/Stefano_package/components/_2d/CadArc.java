@@ -274,7 +274,7 @@ public class CadArc extends CadComponent {
 	public String toJsString()
 	{
 		String arc = "var csg" + componentName + " = new CSG.Path2D.arc({ center: [" +
-						center.x + ", " + center.y + "], radius: " + getRadius() + ", startangle: " + 
+						center.x + ", " + Math.negateExact(center.y) + "], radius: " + getRadius() + ", startangle: " + 
 						getStartAngle() + ", endangle: " + (angularAmplitude + getStartAngle()) + ", resolution: " + getRes() + "})";
 		
 		return arc.concat(getExtrusionString());

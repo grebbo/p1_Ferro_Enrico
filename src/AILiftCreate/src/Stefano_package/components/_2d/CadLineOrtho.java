@@ -220,7 +220,7 @@ public class CadLineOrtho extends CadComponent {
 		}
 		
 		String line = "var " + componentName + " = CAG.rectangle({center: [" +
-						center_x + ", " + center_y + "], radius: [" + 
+						center_x + ", " + Math.negateExact((int)center_y) + "], radius: [" + 
 						radius_x + ", " + radius_y + "]})";
 
 		return line.concat(getExtrusionString());

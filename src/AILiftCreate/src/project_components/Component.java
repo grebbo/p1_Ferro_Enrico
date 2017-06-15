@@ -15,7 +15,7 @@ public abstract class Component {
      * @attributes
      * id -> each component type has a id code
      * width, depth -> component external frame dimensions
-     * compatibleComponents -> list of components compatible with the one used
+     * compatibleComponents -> list of Stefano_package.components compatible with the one used
      *                         (implemented, but not used in this version)
      */
     @JsonProperty("id")

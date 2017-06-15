@@ -277,20 +277,20 @@ public class CadCylinder extends CadComponent3D {
 	public String toJsString() {
 		
 		String cy = "var " + componentName + " = CSG.cylinder({ start: [" +
-				x_base + ", " + y_base + ", " + z_base + "], end: [";
+						 x_base + ", " + Math.negateExact(y_base) + ", " + z_base + "], end: [";
 		
 		switch(this.direction)
 		{
 		case X_AXIS:
-			cy = cy.concat((x_base + height) + ", " + y_base + ", " + z_base);
+			cy = cy.concat((x_base + height) + ", " + Math.negateExact(y_base) + ", " + z_base);
 			break;
 			
 		case Y_AXIS:
-			cy = cy.concat(x_base + ", " + (y_base + height) + ", " + z_base);
+			cy = cy.concat(x_base + ", " + (Math.negateExact(y_base) + height) + ", " + z_base);
 			break;
 			
 		case Z_AXIS:
-			cy = cy.concat(x_base + ", " + y_base + ", " + (z_base + height));
+			cy = cy.concat(x_base + ", " + Math.negateExact(y_base) + ", " + (z_base + height));
 			break;
 			
 		default:
