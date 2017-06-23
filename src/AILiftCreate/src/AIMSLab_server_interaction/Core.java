@@ -17,6 +17,8 @@ public class Core {
     public static void onNewProjectSelection(){
         //init project
         drawingProject = new DrawingProject();
+        //select project
+        AIMSLabServer.getInstance().setStandardProject(false, false, 5);
         //fill the project structure according to the json
         drawingProject = drawingProject.parser.parseJson2DrawingProject(AIMSLabServer.getInstance().createProjectFromMeasures(null));
         //render project (creates jscad file used to render)

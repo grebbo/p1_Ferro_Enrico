@@ -46,7 +46,7 @@ public class FittedDoor extends FittedComponent {
 
         shutterHeight = doorstep/(nGuides + 1);
         for(int i = 1 ; i <= nGuides; i++) {
-            getDrawingStructure().add(new Line(x, y + i*(shutterHeight), x + getFrameWidth(), y + i*(shutterHeight)));
+            getDrawingStructure().add(new Line(x, y + i*(shutterHeight), x + getFrameWidth() - 1, y + i*(shutterHeight)));
         }
     }
 }
