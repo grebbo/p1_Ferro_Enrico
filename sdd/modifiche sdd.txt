@@ -1,7 +1,4 @@
-Class Diagram:
--	Importanti modifiche alla struttura: Database è ora un aggregatore di DrawingProjects e Components, diversamente a quanto 
-		precedentemente modellato. 
-	Motivo della modifica: in seguito a un'ulteriore intervista con il cliente si è notata questa discrepanza con la struttura
-		già presente e delle componenti in backend con cui deve interfacciarsi il modulo software.
-	Modifiche legate: cambiano diagrammi legati all'interazione con il Database.
- 
+- Importanti modifiche alla struttura: Database e Generatore sono stati condensati in AIMSLabServer, che ne copre entrambe le funzionalità: fornisce i progetti sia da misure che in caso di ricerca. 
+Ovviamente i diagrammi collegati riportano modifiche relative. 
+
+- Aggiunta di sotto-componenti CarRails e Brackets. Questo è dovuto alle necessità sorte in fase di programmazione (V. note relative alla sezione di Coding).
