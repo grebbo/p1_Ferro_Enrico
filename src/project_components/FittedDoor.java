@@ -41,4 +41,18 @@ public class FittedDoor extends FittedComponent {
             getDrawingStructure().add(new Line(x, y + i*(shutterHeight), x + getFrameWidth() - 1, y + i*(shutterHeight)));
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FittedDoor that = (FittedDoor) o;
+
+        if (totalWidth != that.totalWidth) return false;
+        if (doorstep != that.doorstep) return false;
+        if (nShutters != that.nShutters) return false;
+        return doorType != null ? doorType.equals(that.doorType) : that.doorType == null;
+    }
+
 }

@@ -31,4 +31,25 @@ public abstract class User {
         this.username = username;
         this.password = password;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }

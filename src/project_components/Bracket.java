@@ -24,4 +24,15 @@ public class Bracket {
 
     public int getWidth() {return width;}
     public int getHeight() {return height;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Bracket bracket = (Bracket) o;
+
+        if (width != bracket.width) return false;
+        return height == bracket.height;
+    }
 }

@@ -45,4 +45,14 @@ public class Shaft extends FittedComponent {
             project2render.addComponent(cadComponent, 0, 0, 5000, travel/10);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Shaft shaft = (Shaft) o;
+
+        return travel == shaft.travel;
+    }
 }

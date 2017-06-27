@@ -26,4 +26,15 @@ public class FittedCar extends FittedComponent {
         Rectangle carFrameFrame = new Rectangle(x, y, getFrameWidth(), getFrameDepth());
         getDrawingStructure().add(carFrameFrame);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FittedCar fittedCar = (FittedCar) o;
+
+        if (totalWidth != fittedCar.totalWidth) return false;
+        return totalDepth == fittedCar.totalDepth;
+    }
 }

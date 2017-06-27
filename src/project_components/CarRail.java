@@ -32,4 +32,17 @@ public class CarRail {
     public int getB1() {return b1;}
     public int getH1() {return h1;}
     public int getK() {return k;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CarRail carRail = (CarRail) o;
+
+        if (p != carRail.p) return false;
+        if (b1 != carRail.b1) return false;
+        if (h1 != carRail.h1) return false;
+        return k == carRail.k;
+    }
 }

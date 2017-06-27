@@ -1,0 +1,36 @@
+La fase di testing ha visto qualche difficoltà nell'utilizzo dei tools e metodologie classiche viste a lezione e durante le esercitazioni. Questo perché un approccio basato su assert e metodi simili si è dimostrato difficilmente applicabile alla totalità del progetto, dal momento che i risultati sono valutabili nella propria correttezza solo post rendering e con una valutazione visiva del modello ottenuto 
+(V. testVariousProjects).
+
+Ad ogni modo si sono testati tutti i metodi principali laddove rilevante, ottenendo un'ottima percentuale di copertura, abbassata solo per motivi trascurabili.
+Infatti non è stato effettuato il testing per:
+- le classi del "Stefano_package", in quanto sviluppato dal mio collega; 
+- i metodi setter, non sempre utilizzati nel codice e inseriti per completezza e convenzione;
+- i metodi equals, generati automaticamente dall'IDE e non sempre usati nella loro interezza.
+
+Tolte queste eccezioni la percentuale di copertura rasenta il 100%.
+
+Tornando al primo punto discusso, allego risultati ottenuti con vari progetti differenti. Si consiglia di rivolgersi al cliente Marco Menapace per confermare la buona riuscita del procedimento e che per ciascuno i risultati ottenuti siano quelli desiderati.
+
+
+
+Resoconto dettagliato:
+NB: Come già detto precedentemente dall'analisi viene tralasciato il package "Stefano_package".
+
+drawing_entities:
+
+	DrawingObject: non sono coperti il costruttore standard e i setter, che non vengono mai usati nel codice.
+
+	Rectangle, Line, Circle: non sono coperti i setter, che non vengono mai usati nel codice.
+
+
+project_components:
+
+	Component: non sono coperti il costruttore standard e i setter, che non vengono mai usati nel codice. Inoltre, per lo stesso motivo non è coperto il metodo addCompatibleComponent.
+
+	FittedComponent e altre classi di Componenti specifiche: non sono coperti completamente i setter e gli equals, metodi creati automaticamente e comunque trascurabili.
+
+AIMSLab_server_interaction:
+
+	AIMSLabServer, Parser: non sono coperti completamente i metodi che riportano eccezioni (non vengono lanciate queste ultime) e i costruttori standard perché mai usati.
+
+	

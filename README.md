@@ -1,15 +1,20 @@
 # AiLift
 
+# SDD
+Vedere file di modifiche presente nella relativa cartella.
+
 # Implementation
 Per l'importazione del codice è necessario:
 
-    1. Usare l'apposita opzione di Eclipse ("Open existing project...")
-    2. Modificare il build path nelle opzioni del progetto, aggiungendo le librerie Jackson presenti in "/lib"
-
-    NB: Rimuovere i riferimenti alle librerie Jackson già presenti per evitare errori in fase di compilazione. 
-        Nonostante questi il codice compila ed esegue comunque essendo un problema a livello di discrepanza di 
-        path delle librerie.
-    NB2:Per il corretto funzionamento ho compreso il Package del mio collega "Stefano_package". I restanti packages
+    1. Creare un nuovo progetto.
+    2. Aggiungere i package presenti in "./src" tramite drag&drop.
+    3. Aggiungere le librerie al progetto presenti in "./libs" e Junit4.
+    4. Aggiungere alla cartella del progetto Eclipse la cartella "project_jsons" presente in "./test".
+    
+    NB:Per il corretto funzionamento ho compreso il Package del mio collega "Stefano_package". I restanti packages
         contengono la parte di codice da me implementata.
         
-TODO: aggiungere file di documentazione, al momento presente nei commenti sopra i metodi e classi.
+# TestingNotes
+Il contenuto della cartella "test" è lo stesso del package "test" presente in "src", fatta eccezione per "AllTests", 
+test suite che viene utilizzata per eseguire tutti i test insieme e ottenere la massima copertura del progetto.
+Vedere omonimo file presente nella directory "./test".

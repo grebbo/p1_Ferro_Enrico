@@ -22,10 +22,6 @@ public class AIMSLabServer {
      */
     private static String projectJsonPath;
     /**
-     * Project folder path
-     */
-    private static String projectFolderPath = "./project_jsons/";
-    /**
      * Collection of the projects stored
      */
     private Map<Integer, File> projects;
@@ -35,7 +31,7 @@ public class AIMSLabServer {
      */
     private AIMSLabServer(){
         projects = new HashMap<>();
-        projectJsonPath = projectFolderPath + "symm_1200_1200";
+        projectJsonPath = "./project_jsons/symm_1200_1200";
     }
 
     /**
@@ -47,6 +43,10 @@ public class AIMSLabServer {
             instance = new AIMSLabServer();
         }
         return instance;
+    }
+
+    public Map<Integer, File> getProjects() {
+        return projects;
     }
 
     /**
@@ -71,7 +71,8 @@ public class AIMSLabServer {
      */
     public File retrieveProjectByID(int id) throws Exception{
         if (searchProject(id)){
-            return projects.get(id);
+            //return projects.get(id);
+            return new File(projectJsonPath);
         }
         else
             throw new Exception("Error: project not found.");
@@ -108,48 +109,7 @@ public class AIMSLabServer {
         projects.put(id, project);
     }
 
-    /**
-     * Debugging method. It lets to change the standard rendered json project.
-     * @param symm is symmetric project ?
-     * @param cen is a project with cen-type doors ?
-     * @param shutters n° of shutters
-     */
-    public void setStandardProject(boolean symm, boolean cen, int shutters) {
-        String filePath;
-        if ( symm ) {
-            filePath = "symm_1200_1200";
-        }
-        if (cen) {
-            switch (shutters) {
-                case 2:
-                    filePath = "door_CEN2";
-                    break;
-                case 4:
-                    filePath = "door_CEN4";
-                    break;
-                case 6:
-                    filePath = "door_CEN6";
-                    break;
-                default:
-                    filePath = "asymm_1000_1400";
-                    break;
-            }
-        } else {
-            switch (shutters) {
-                case 1:
-                    filePath = "door_TEL1";
-                    break;
-                case 2:
-                    filePath = "door_TEL2";
-                    break;
-                case 3:
-                    filePath = "door_TEL3";
-                    break;
-                default:
-                    filePath = "asymm_1000_1400";
-                    break;
-            }
-        }
-        projectJsonPath = projectFolderPath + filePath;
+    public static void setProjectJsonPath(String projectJsonPath) {
+        AIMSLabServer.projectJsonPath = projectJsonPath;
     }
 }

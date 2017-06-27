@@ -65,5 +65,18 @@ public class FittedCarFrame extends FittedComponent {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        FittedCarFrame that = (FittedCarFrame) o;
+
+        if (wallDistance != that.wallDistance) return false;
+        if (cabinDistance != that.cabinDistance) return false;
+        if (dtg != that.dtg) return false;
+        if (pistDistance != that.pistDistance) return false;
+        if (bracket != null ? !bracket.equals(that.bracket) : that.bracket != null) return false;
+        return carRail != null ? carRail.equals(that.carRail) : that.carRail == null;
+    }
 }

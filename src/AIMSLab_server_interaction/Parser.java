@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.*;
 import project_components.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 public class Parser {
@@ -24,6 +25,11 @@ public class Parser {
      * Instance of the singleton class
      */
     private static Parser instance;
+
+    /**
+     * Output file
+     */
+    private String projectJsonOutputPath = "./output";
 
     /**
      * Constructor
@@ -140,7 +146,7 @@ public class Parser {
      * thanks to the used tags, generate the json string.
      *
      * @param drawingProject project to be parsed
-     * @return json file content
+     * @return json file
      */
     public String parseDrawingProject2Json(DrawingProject drawingProject){
         String projectJson = "";
@@ -150,7 +156,15 @@ public class Parser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return projectJson;
+        try {
+            PrintWriter pw = new PrintWriter(projectJsonOutputPath);
+            pw.print(projectJson);
+            pw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return projectJsonOutputPath;
     }
 
 }

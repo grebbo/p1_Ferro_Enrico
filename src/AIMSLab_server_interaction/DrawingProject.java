@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.*;
 import project_components.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class models the project infos (id, installer) and structure (Stefano_package.components).
@@ -17,6 +19,18 @@ import java.util.ArrayList;
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class DrawingProject {
+
+    /**
+     * Component types in the project. One of each type.
+     */
+    public enum ComponentType {
+        SHAFT,
+        CAR,
+        CARDOOR,
+        LANDINGDOOR,
+        CARFRAME
+    }
+
     /*
      * Tags are used to map attributes to json fields, mantaining name in line with the OOP conventions.
      */
@@ -35,7 +49,7 @@ public class DrawingProject {
      * List of the components that makes the project
      */
     @JsonIgnore
-    private ArrayList<FittedComponent> componentList;
+    private Map<ComponentType,FittedComponent> componentList;
 
     @JsonProperty("shaft")
     private Shaft shaft;
@@ -57,29 +71,32 @@ public class DrawingProject {
      * Constructor
      */
     public DrawingProject(){
-        componentList = new ArrayList<>();
+        componentList = new HashMap<>();
         parser = Parser.getInstance();
     }
 
-    public ArrayList<FittedComponent> getComponentList(){return componentList;}
+    public Map<ComponentType,FittedComponent> getComponentList(){return componentList;}
+    public String getProjectID() {return projectID;}
+    public Installer getCreator() {return creator;}
+
     public void setShaft(Shaft shaft) {
-        componentList.add(shaft);
+        componentList.put(ComponentType.SHAFT, shaft);
         this.shaft = shaft;
     }
     public void setCarFrame(FittedCarFrame carFrame) {
-        componentList.add(carFrame);
+        componentList.put(ComponentType.CARFRAME, carFrame);
         this.carFrame = carFrame;
     }
     public void setCar(FittedCar car) {
-        componentList.add(car);
+        componentList.put(ComponentType.CAR, car);
         this.car = car;
     }
     public void setCarDoor(FittedCarDoor carDoor) {
-        componentList.add(carDoor);
+        componentList.put(ComponentType.CARDOOR, carDoor);
         this.carDoor = carDoor;
     }
     public void setLandingDoor(FittedLandingDoor landingDoor) {
-        componentList.add(landingDoor);
+        componentList.put(ComponentType.LANDINGDOOR, landingDoor);
         this.landingDoor = landingDoor;
     }
     public void setProjectID(String projectID) {this.projectID = projectID;}
@@ -90,12 +107,13 @@ public class DrawingProject {
      * input in the jscad web app ("https://openjscad.org/"). See readme.md for instructions about this. In a second
      * version of the software such operations will be automatic.
      *
-     * @param project2render -> project rendering file
+     * @param fileOutputName name of the output file
      */
-    public void render(AiLiftProject2D project2render){
-        for (FittedComponent c: componentList) {
+    public void render(String fileOutputName){
+        AiLiftProject2D project2render = new AiLiftProject2D();
+        for (FittedComponent c: componentList.values()) {
             c.render(project2render);
         }
-        project2render.toFile_jscad("render_output", true);
+        project2render.toFile_jscad(fileOutputName, true);
     }
 }

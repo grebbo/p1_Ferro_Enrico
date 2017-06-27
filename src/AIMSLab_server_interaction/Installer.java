@@ -23,4 +23,19 @@ public class Installer extends User {
         super(name, surname, address, username, password);
         this.installerID = installerID;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Installer installer = (Installer) o;
+
+        return installerID != null ? installerID.equals(installer.installerID) : installer.installerID == null;
+    }
+
+    public String getInstallerID() {
+
+        return installerID;
+    }
 }
