@@ -14,7 +14,7 @@ Per l'importazione del codice è necessario:
     NB: Per il corretto funzionamento ho compreso il Package del mio collega "Stefano_package". I restanti packages
         contengono la parte di codice da me implementata.
         
-    NB2: Per il rendering dei file .jscad ottenuti dal progetto usare il sito "https://openjscad.org/".
+    NB2: Per il rendering dei file .jscad ottenuti dal progetto usare il sito "https://openjscad.org/" (link html presente nella cartella "./test")
         1. Andare all'indirizzo sopra indicato.
         2. Drag&Drop del file nel box in basso a sinistra.
         3. Profit.
