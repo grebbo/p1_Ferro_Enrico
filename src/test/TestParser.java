@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import AIMSLab_server_interaction.*;
 import AIMSLab_server_interaction.DrawingProject.ComponentType;
+import exceptions.OverlappingException;
 import project_components.Bracket;
 import project_components.CarRail;
 import project_components.FittedCar;
@@ -33,7 +34,7 @@ public class TestParser {
 	static JsonNode jsonCursor;
 	
 	@BeforeClass
-	public static void setUp() {
+	public static void setUp() throws OverlappingException {
 		parser = Parser.getInstance();
 		dp = parser.parseJson2DrawingProject(new File(jsonPath));
 		String outputFilePath = parser.parseDrawingProject2Json(dp);

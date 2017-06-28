@@ -10,6 +10,7 @@ import org.junit.Test;
 import AIMSLab_server_interaction.AIMSLabServer;
 import AIMSLab_server_interaction.DrawingProject;
 import AIMSLab_server_interaction.Parser;
+import exceptions.OverlappingException;
 
 /**
  * Testing for the saving process. It controls that the project is successfully saved in the server.
@@ -24,7 +25,7 @@ public class TestSaveProject {
 	}
 
 	@Test
-	public void testSaveProject() {
+	public void testSaveProject() throws OverlappingException {
 		Parser parser = Parser.getInstance();
 		DrawingProject dp = parser.parseJson2DrawingProject(server.createProjectFromMeasures(null));
 

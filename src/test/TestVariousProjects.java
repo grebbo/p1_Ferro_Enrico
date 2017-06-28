@@ -9,10 +9,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import AIMSLab_server_interaction.*;
+import exceptions.OverlappingException;
 
 /**
  * Tests various types of project and creates for each one the corresponding output file.
  * The result can be evaluated visually putting each output in the online service "jscad.org".
+ * Using an invalid project (error put in the json file) is also tested the overlapping algorithm used, 
+ * throwing a custom exception that notifies about the fail of the process.
  */
 
 public class TestVariousProjects {
@@ -28,13 +31,24 @@ public class TestVariousProjects {
 	}
 	
 	@Test
-	public void testCreateProjects() {
+	public void testCreateProjects() throws OverlappingException {
 		File folder = new File(jsonFolder);
 		for (File file : folder.listFiles()) {
-			server.setProjectJsonPath(jsonFolder + file.getName());
-			dp = parser.parseJson2DrawingProject(server.createProjectFromMeasures(null));
-			dp.render(file.getName() + "_output");
+			if(!file.getName().equals("overlap_json")) {
+				server.setProjectJsonPath(jsonFolder + file.getName());
+				dp = parser.parseJson2DrawingProject(server.createProjectFromMeasures(null));
+				dp.render(file.getName() + "_output");
+			}
 		}
+	}
+	
+	@Test
+	public void testOverlapping() throws OverlappingException {
+		parser = Parser.getInstance();
+		server = AIMSLabServer.getInstance();
+		server.setProjectJsonPath("./project_jsons/overlap_json");
+		dp = parser.parseJson2DrawingProject(server.createProjectFromMeasures(null));
+		dp.render("output");
 	}
 
 }

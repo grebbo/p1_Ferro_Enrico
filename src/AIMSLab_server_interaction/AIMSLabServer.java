@@ -42,6 +42,7 @@ public class AIMSLabServer {
         if (instance == null) {
             instance = new AIMSLabServer();
         }
+        projectJsonPath = "./project_jsons/symm_1200_1200";
         return instance;
     }
 

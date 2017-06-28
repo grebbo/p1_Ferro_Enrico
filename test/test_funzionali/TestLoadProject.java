@@ -10,6 +10,7 @@ import org.junit.Test;
 import AIMSLab_server_interaction.AIMSLabServer;
 import AIMSLab_server_interaction.DrawingProject;
 import AIMSLab_server_interaction.Parser;
+import exceptions.OverlappingException;
 
 /**
  * Testing for the loading use case. Fails if it's impossible to retrieve the project just saved, otherwise it's successful.
@@ -24,7 +25,7 @@ public class TestLoadProject {
 	}
 
 	@Test
-	public void testLoadProject() {
+	public void testLoadProject() throws OverlappingException {
 		Parser parser = Parser.getInstance();
 		DrawingProject dp = parser.parseJson2DrawingProject(server.createProjectFromMeasures(null));
 

@@ -9,6 +9,7 @@ package AIMSLab_server_interaction;
   */
 
 import com.fasterxml.jackson.databind.*;
+import exceptions.OverlappingException;
 import project_components.*;
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class Parser {
      * @param jsonFile json file with the project infos
      * @return project class populated relatively to json content
      */
-    public DrawingProject parseJson2DrawingProject(File jsonFile) {
+    public DrawingProject parseJson2DrawingProject(File jsonFile) throws OverlappingException {
         DrawingProject drawingProject = new DrawingProject();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -136,6 +137,18 @@ public class Parser {
                                                                 carDoorJson.get("doorType").asText(),
                                                                 carDoorJson.get("numshutters").asInt());
         drawingProject.setLandingDoor(landingDoor);
+
+        for (FittedComponent c: drawingProject.getComponentList().values()) {
+            if( !(c instanceof Shaft)) {
+                for (FittedComponent otherComp: drawingProject.getComponentList().values()) {
+                    if( !(otherComp instanceof Shaft) && !c.equals(otherComp)) {
+                        if (c.overlaps(otherComp)) {
+                            throw new OverlappingException();
+                        }
+                    }
+                }
+            }
+        }
 
         return drawingProject;
     }

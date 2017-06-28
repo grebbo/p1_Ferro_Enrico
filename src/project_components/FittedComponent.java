@@ -71,4 +71,19 @@ public class FittedComponent extends Component {
             myProject.addComponent(cadComponent, 0, 0, 5000, 1);
         }
     }
+
+    /**
+     * This method tells if this component frame overlaps with another component frame. Returns true if they ovelap,
+     * returns false otherwise.
+     * @param other The component to verify overlapping with
+     * @return true if they ovelap, false otherwise.
+     */
+    public boolean overlaps(FittedComponent other){
+        if( this.getDrawingStartingPoint_x() < other.getDrawingStartingPoint_x() + other.getFrameWidth() &&
+                this.getDrawingStartingPoint_x() + this.getFrameWidth() > other.getDrawingStartingPoint_x() &&
+                this.getDrawingStartingPoint_y() + this.getFrameDepth() > other.getDrawingStartingPoint_y() &&
+                this.getDrawingStartingPoint_y() < other.getDrawingStartingPoint_y() + other.getFrameDepth())
+            return true;
+        else return false;
+    }
 }

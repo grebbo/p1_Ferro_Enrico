@@ -109,9 +109,9 @@ public class DrawingProject {
      *
      * @param fileOutputName name of the output file
      */
-    public void render(String fileOutputName){
+    public void render(String fileOutputName) {
         AiLiftProject2D project2render = new AiLiftProject2D();
-        for (FittedComponent c: componentList.values()) {
+        for (FittedComponent c : componentList.values()) {
             c.render(project2render);
         }
         project2render.toFile_jscad(fileOutputName, true);

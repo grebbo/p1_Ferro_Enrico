@@ -5,4 +5,5 @@ Stefano_package.components._2d
 Stefano_package.components._3d
 Stefano_package.exceptions
 drawing_entities
+exceptions
 project_components
