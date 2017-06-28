@@ -11,6 +11,10 @@ import AIMSLab_server_interaction.AIMSLabServer;
 import AIMSLab_server_interaction.DrawingProject;
 import AIMSLab_server_interaction.Parser;
 
+/**
+ * Testing for the saving process. It controls that the project is successfully saved in the server.
+ */
+
 public class TestSaveProject {
 	static AIMSLabServer server;
 

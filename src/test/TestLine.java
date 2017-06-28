@@ -8,6 +8,10 @@ import org.junit.Test;
 import Stefano_package.components._2d.*;
 import drawing_entities.*;
 
+/**
+ * Simple testing of the line class
+ */
+
 public class TestLine {
 	static Line line;
 	

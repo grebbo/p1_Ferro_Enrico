@@ -7,14 +7,21 @@ Infatti non è stato effettuato il testing per:
 - i metodi setter, non sempre utilizzati nel codice e inseriti per completezza e convenzione;
 - i metodi equals, generati automaticamente dall'IDE e non sempre usati nella loro interezza.
 
-Tolte queste eccezioni la percentuale di copertura rasenta il 100%.
-
 Tornando al primo punto discusso, allego risultati ottenuti con vari progetti differenti. Si consiglia di rivolgersi al cliente Marco Menapace per confermare la buona riuscita del procedimento e che per ciascuno i risultati ottenuti siano quelli desiderati.
 
 
 
 Resoconto dettagliato:
 NB: Come già detto precedentemente dall'analisi viene tralasciato il package "Stefano_package".
+
+FUNCTIONAL TESTS
+Per i test funzionali lo statement coverage riporta una percentuale di copertura intorno al 50%. Sebbene il risultato sembri basso andando nel dettaglio a verificare cosa rende tale questo valore ci permette di dire che sia sufficiente:
+non vengono, infatti, coperti getters, setters e equals methods, generati automaticamente dall'IDE e, comunque, di facile valutazione. 
+Vengono, inoltre, tralasciati alcuni metodi di classi astratte e costruttori standard che non vengono effettivamente usati nel codice, insieme a alcune eccezioni che dovrebbero essere lanciate nel caso di erronea istanziazione di classi utility (es. PrintWriter, FileReader, ecc.).
+Per lo stesso motivo il branch coverage riporta un valore molto basso (20%), ma su cui inficiano in maniera ben più che sensibile i numerosi metodi equals delle classi, che presentano branches in quantità di gran lunga superiore rispetto al resto del progetto. Rimossi questi ultimi la percentuale di copertura rasenta il 100%.
+
+STRUCTURAL TESTS
+Per quanto riguarda i test strutturali la percentuale di copertura è più che accettabile. I motivi per cui non viene raggiunto il 100% sono i seguenti:
 
 drawing_entities:
 
@@ -32,5 +39,7 @@ project_components:
 AIMSLab_server_interaction:
 
 	AIMSLabServer, Parser: non sono coperti completamente i metodi che riportano eccezioni (non vengono lanciate queste ultime) e i costruttori standard perché mai usati.
+Inoltre la copertura della classe AIMSLabServer viene trascurata in questa versione del software in quanto risulta essere solo uno stub, un prototipo per funzionalità che verranno implementate successivamente.
+
 
 	

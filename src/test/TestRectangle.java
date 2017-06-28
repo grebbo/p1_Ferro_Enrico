@@ -8,6 +8,11 @@ import org.junit.Test;
 import Stefano_package.components._2d.*;
 import drawing_entities.*;
 
+
+/**
+ * Simple testing of the rectangle class
+ */
+
 public class TestRectangle {
 	static Rectangle rectangle;
 	

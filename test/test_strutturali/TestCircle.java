@@ -8,6 +8,10 @@ import org.junit.Test;
 import Stefano_package.components._2d.*;
 import drawing_entities.*;
 
+/**
+ * Simple testing of the circle class
+ */
+
 public class TestCircle {
 	static Circle circle;
 	

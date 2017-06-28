@@ -21,6 +21,11 @@ import project_components.FittedCarFrame;
 import project_components.FittedLandingDoor;
 import project_components.Shaft;
 
+/**
+ * Testing of the parser class. It test if a reverse parsing (from json to project and from project to json gives us the same result)
+ * For each component parsed controls that the class created matches.
+ */
+
 public class TestParser {
 	static Parser parser;
 	static String jsonPath = "./project_jsons/symm_1200_1200";

@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import AIMSLab_server_interaction.*;
 
+/**
+ * Testing for the project creation process. It can be evaluated only visually, putting the output file in the online service "jscad.org"
+ */
 
 public class TestNewProject {
 	static AIMSLabServer server;

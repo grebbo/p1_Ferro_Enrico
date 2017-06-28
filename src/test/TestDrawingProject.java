@@ -10,7 +10,7 @@ import AIMSLab_server_interaction.DrawingProject.ComponentType;
 import project_components.*;
 
 /**
- * Testing class for the drawingProject. It controls the populating and rendering operations.
+ * Testing class for the drawingProject. It tests the populating process of the class.
  * 
  * @author Enrico Ferro
  *
@@ -56,11 +56,4 @@ public class TestDrawingProject {
 		assertSame("Not same creator", creator, drawingProject.getCreator());
 	
 	}
-	
-	@Test
-	public void testRenderProject() {
-		//fail("not implemented");
-	}
-	
-
 }
